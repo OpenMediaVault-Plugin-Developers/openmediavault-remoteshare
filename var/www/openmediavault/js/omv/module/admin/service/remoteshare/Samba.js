@@ -56,6 +56,16 @@ Ext.define("OMV.module.admin.service.remoteshare.SmbShare", {
                 "usefile"
             ],
             properties : "show"
+        },{
+            conditions : [{
+                name  : "guest",
+                value : true
+            }],
+            name       : [
+                "username",
+                "password"
+            ],
+            properties : "allowBlank"
         }]
     }],
 
