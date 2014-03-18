@@ -1,0 +1,5 @@
+openmediavault-remoteshare (0.6) stable; urgency=low
+
+  * Initial release for OMV 0.6
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 18 Mar 2014 06:30:27 -0500
