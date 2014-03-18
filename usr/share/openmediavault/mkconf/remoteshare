@@ -25,7 +25,7 @@ CRED_FILE="/root/.smbcredentials-"
 count=$(omv_config_get_count "//services/remoteshare/smbshares/smbshare");
 
 # remote samba share entries
-index=0;
+index=1;
 while [ ${index} -le ${count} ]; do
     credfile=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/usefile")
     sfref=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/sharedfolderref")
