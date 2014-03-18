@@ -402,6 +402,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
 
         $sfPath = OMVRpc::exec("ShareMgmt", "getPath", array("uuid" => $object['sharedfolderref']), $context);
 
+        // unmount share
         $cmd = sprintf("export LANG=C; umount %s", $sfPath);
         $this->exec($cmd);
 
@@ -414,6 +415,11 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
             "modules" => array("remoteshare"),
             "force" => TRUE
         ), $context);
+
+        // delete credential file
+        $credfile = "/root/.smbcredentials-".$object['sharedfolderref'];
+        if(file_exists($credfile))
+            unlink($credfile);
 
         // Return the deleted configuration object.
         return $object;
