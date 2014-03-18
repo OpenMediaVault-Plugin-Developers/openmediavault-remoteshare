@@ -59,7 +59,7 @@ Ext.define("OMV.module.admin.service.remoteshare.SmbShare", {
         }]
     }],
 
-    width        : 500,
+    width        : 550,
 
     getFormItems : function() {
         var me = this;

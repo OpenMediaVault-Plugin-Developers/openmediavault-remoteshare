@@ -342,9 +342,9 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
 
         $sfPath = OMVRpc::exec("ShareMgmt", "getPath", array("uuid" => $params['sharedfolderref']), $context);
 
-        // servername/sharename  /media/windowsshare  cifs  guest,uid=1000,iocharset=utf8  0  0
-        // servername/sharename  /media/windowsshare  cifs  username=msusername,password=mspassword,iocharset=utf8,sec=ntlm  0  0
-        // servername/sharename  /media/windowsshare  cifs  credentials=/home/ubuntuusername/.smbcredentials,iocharset=utf8,sec=ntlm 0 0
+        // //servername/sharename  /media/windowsshare  cifs  guest,uid=1000,iocharset=utf8  0  0
+        // //servername/sharename  /media/windowsshare  cifs  username=msusername,password=mspassword,iocharset=utf8,sec=ntlm  0  0
+        // //servername/sharename  /media/windowsshare  cifs  credentials=/home/ubuntuusername/.smbcredentials,iocharset=utf8,sec=ntlm 0 0
         // .smbcredentials
         //   username=msusername
         //   password=mspassword
@@ -356,7 +356,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
             else
                 $credentials = "username=".$object['username'].",password=".$object['password'].",sec=ntlm";
         }
-        $object['fstab_line'] = $object['server']."/".$object['smbname']." ".$sfPath." cifs ".$credentials.",iocharset=utf8 0 0";
+        $object['fstab_line'] = "//".$object['server']."/".$object['smbname']." ".$sfPath." cifs ".$credentials.",iocharset=utf8 0 0";
 
         // Set the configuration object.
         $success = FALSE;
