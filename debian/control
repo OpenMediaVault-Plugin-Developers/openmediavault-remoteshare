@@ -7,7 +7,7 @@ Standards-Version: 3.9.3
 
 Package: openmediavault-remoteshare
 Architecture: all
-Depends: openmediavault (>= 0.6),
+Depends: openmediavault (>= 0.6), cifs-utils
 Description: remote share plugin for OpenMediaVault.
  This plugin allow mounting of a remote samba and nfs shares as a
  Shared Folder for sharing with other plugins.
