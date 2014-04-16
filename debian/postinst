@@ -14,6 +14,10 @@ configure)
         object="${object}<smbshares></smbshares>"
         omv_config_add_element "/config/services" "remoteshare" "${object}" true
     fi
+
+    dpkg-trigger update-fixperms
+    dpkg-trigger update-locale
+
     ;;
 
 abort-upgrade|abort-remove|abort-deconfigure)
