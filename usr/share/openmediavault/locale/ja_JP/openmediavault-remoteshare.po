@@ -1,0 +1,105 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-remoteshare\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-18 08:51-0500\n"
+"PO-Revision-Date: 2014-04-09 01:51+0000\n"
+"Last-Translator: kansuke <kansuke4649@gmail.com>\n"
+"Language-Team: Japanese (Japan) (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/ja_JP/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ja_JP\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Add share"
+msgstr "共有の追加"
+
+msgid "Edit share"
+msgstr "共有の編集"
+
+msgid "Export"
+msgstr "エクスポート"
+
+msgid "Extra options"
+msgstr "その他のオプション"
+
+msgid "Guest"
+msgstr "ゲスト"
+
+msgid ""
+"Hostname, IP address, or fully qualified domain name of the server exporting"
+" the file system."
+msgstr "ファイルシステムをエクスポートするサーバーのホスト名、IPアドレス、またはサーバの完全修飾ドメイン名。"
+
+msgid "Hostname, IP address, or fully qualified domain name of the server."
+msgstr "ホスト名、IPアドレス、またはサーバの完全修飾ドメイン名。"
+
+msgid "If checked, share is mounted as guest."
+msgstr "チェックするとゲストとして共有をマウントします。"
+
+msgid ""
+"If checked, username and password are stored in a credential file instead of"
+" in fstab."
+msgstr "チェックするとユーザー名とパスワードは、資格証明ファイルではなくfstabに格納されます。"
+
+msgid "Leave unchecked for NFSv2 or NFSv3 servers. Check for NFSv4 servers."
+msgstr "NFSv2またはNFSv3サーバの場合チェックしないようにします。 NFSv4サーバの場合はチェックします。"
+
+msgid "Mount as"
+msgstr "マウントします"
+
+msgid "NFS"
+msgstr "NFS"
+
+msgid ""
+"NFS share will be mounted as this shared folder for use in other plugins."
+msgstr "NFS共有は他のプラグインで使用するためにこの共有フォルダとしてマウントされます"
+
+msgid "NFSv4"
+msgstr "NFSv4"
+
+msgid "Password"
+msgstr "パスワード"
+
+msgid "Path to the exported directory."
+msgstr "エクスポートディレクトリのパス。"
+
+msgid "Remote Shares"
+msgstr "リモート共有"
+
+msgid "Samba"
+msgstr "Samba"
+
+msgid ""
+"Samba share will be mounted as this shared folder for use in other plugins."
+msgstr "Samba共有は他のプラグインで使用するためにこの共有フォルダとしてマウントされます"
+
+msgid "Server"
+msgstr "サーバ"
+
+msgid "Share Name"
+msgstr "共有名"
+
+msgid "Shared Folder"
+msgstr "共有フォルダ"
+
+msgid "This share is already in use by another remote NFS share."
+msgstr "この共有は、別のリモートNFS共有で既に使用されています。"
+
+msgid "This share is already in use by another remote Samba share."
+msgstr "この共有は、別のリモートSamba共有で既に使用されています。"
+
+msgid "Use File"
+msgstr "ファイルを使用する"
+
+msgid "Username"
+msgstr "ユーザー名"
+
+msgid "n/a"
+msgstr "n/a"

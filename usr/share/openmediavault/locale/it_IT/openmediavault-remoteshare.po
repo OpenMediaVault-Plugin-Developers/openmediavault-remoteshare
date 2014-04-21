@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Paolo Velati <paolo.velati@gmail.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-remoteshare\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-18 08:51-0500\n"
+"PO-Revision-Date: 2014-03-25 14:14+0000\n"
+"Last-Translator: Paolo Velati <paolo.velati@gmail.com>\n"
+"Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Add share"
+msgstr "Aggiungi condivisione"
+
+msgid "Edit share"
+msgstr "Modifica condivisione"
+
+msgid "Export"
+msgstr "Esporta"
+
+msgid "Extra options"
+msgstr "Opzioni extra"
+
+msgid "Guest"
+msgstr "Ospite"
+
+msgid ""
+"Hostname, IP address, or fully qualified domain name of the server exporting"
+" the file system."
+msgstr "Nome host, indirizzo IP, oppure un nome di dominio completo del server che esporta il file system."
+
+msgid "Hostname, IP address, or fully qualified domain name of the server."
+msgstr "Nome host, indirizzo IP, oppure un nome di dominio completo del server."
+
+msgid "If checked, share is mounted as guest."
+msgstr "Se selezionato, la condivisione è montata come ospite."
+
+msgid ""
+"If checked, username and password are stored in a credential file instead of"
+" in fstab."
+msgstr "Se selezionato, nome utente e password saranno salvate in un file di credenziali al posto di fstab."
+
+msgid "Leave unchecked for NFSv2 or NFSv3 servers. Check for NFSv4 servers."
+msgstr "Lascia non selezionato per server NFSv2 o NFSv3. Seleziona per server NFSv4."
+
+msgid "Mount as"
+msgstr "Monta come"
+
+msgid "NFS"
+msgstr "NFS"
+
+msgid ""
+"NFS share will be mounted as this shared folder for use in other plugins."
+msgstr "La condivisione NFS sarà montata come questa cartella condivisa per utilizzarla in altri plugin."
+
+msgid "NFSv4"
+msgstr "NFSv4"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Path to the exported directory."
+msgstr "Percorso verso la cartella esportata."
+
+msgid "Remote Shares"
+msgstr "Condivisioni Remote"
+
+msgid "Samba"
+msgstr "Samba"
+
+msgid ""
+"Samba share will be mounted as this shared folder for use in other plugins."
+msgstr "La condivisione Samba sarà montata come questa cartella condivisa per utilizzarla in altri plugin."
+
+msgid "Server"
+msgstr "Server"
+
+msgid "Share Name"
+msgstr "Nome Condivisione"
+
+msgid "Shared Folder"
+msgstr "Cartella Condivisa"
+
+msgid "This share is already in use by another remote NFS share."
+msgstr "Questa condivisione è già in uso da un altra condivisione NFS remota."
+
+msgid "This share is already in use by another remote Samba share."
+msgstr "Questa condivisione è già in uso da un altra condivisione Samba remota."
+
+msgid "Use File"
+msgstr "Usa File"
+
+msgid "Username"
+msgstr "Nome utente"
+
+msgid "n/a"
+msgstr "n/d"

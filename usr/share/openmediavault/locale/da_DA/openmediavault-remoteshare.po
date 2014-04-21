@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Stefan Thrane Overby <stoverby@gmail.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-remoteshare\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-18 08:51-0500\n"
+"PO-Revision-Date: 2014-04-10 07:16+0000\n"
+"Last-Translator: Stefan Thrane Overby <stoverby@gmail.com>\n"
+"Language-Team: Danish (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/da/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: da\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Add share"
+msgstr "TIlføj deling"
+
+msgid "Edit share"
+msgstr "Rediger deling"
+
+msgid "Export"
+msgstr "Eksporter"
+
+msgid "Extra options"
+msgstr "Ekstra valgmuligheder"
+
+msgid "Guest"
+msgstr "Gæst"
+
+msgid ""
+"Hostname, IP address, or fully qualified domain name of the server exporting"
+" the file system."
+msgstr "Værtsnavn, IP adresse, eller fuld kvalificeret domænenavn på serveren, der eksportere filsystemet."
+
+msgid "Hostname, IP address, or fully qualified domain name of the server."
+msgstr "Værtsnavn, IP adresse, eller fuld kvalificeret domænenavn på serveren"
+
+msgid "If checked, share is mounted as guest."
+msgstr "Hvis markeret, er deling monteret som gæst."
+
+msgid ""
+"If checked, username and password are stored in a credential file instead of"
+" in fstab."
+msgstr "Hvis markeret, vil brugernavn og adgangskode blive gemt i en legitimationsfil i stedet for i fstab."
+
+msgid "Leave unchecked for NFSv2 or NFSv3 servers. Check for NFSv4 servers."
+msgstr "Marker ikke for NFSv2 eller NFSv3 servere. Marker for NFSv4 servere."
+
+msgid "Mount as"
+msgstr "Monter som"
+
+msgid "NFS"
+msgstr "NFS"
+
+msgid ""
+"NFS share will be mounted as this shared folder for use in other plugins."
+msgstr "NFS deling vil blive monteret, som denne delte mappe til brug i andre plugins."
+
+msgid "NFSv4"
+msgstr "NFSv4"
+
+msgid "Password"
+msgstr "Adgangskode"
+
+msgid "Path to the exported directory."
+msgstr "Sti til det eksporteret bibliotek. "
+
+msgid "Remote Shares"
+msgstr "Eksterne Delinger"
+
+msgid "Samba"
+msgstr "Samba"
+
+msgid ""
+"Samba share will be mounted as this shared folder for use in other plugins."
+msgstr "Samba deling vil blive monteret, som denne delte mappe til brug i andre plugins."
+
+msgid "Server"
+msgstr "Server"
+
+msgid "Share Name"
+msgstr "Deling Navn"
+
+msgid "Shared Folder"
+msgstr "Delt Mappe"
+
+msgid "This share is already in use by another remote NFS share."
+msgstr "Denne deling er allerede i brug, af en anden ekstern NFS deling."
+
+msgid "This share is already in use by another remote Samba share."
+msgstr "Denne deling er allerede i brug, af en anden ekstern Samba deling."
+
+msgid "Use File"
+msgstr "Brug Fil"
+
+msgid "Username"
+msgstr "Brugernavn"
+
+msgid "n/a"
+msgstr "n/a"
