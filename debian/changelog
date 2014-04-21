@@ -1,8 +1,9 @@
 openmediavault-remoteshare (0.6.2) stable; urgency=low
 
+  * Fix nfs share bug
   * Update locales
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 21 Apr 2014 06:42:26 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 21 Apr 2014 07:10:34 -0500
 
 openmediavault-remoteshare (0.6.1) stable; urgency=low
 

@@ -27,7 +27,7 @@ count=$(omv_config_get_count "//services/remoteshare/nfsshares/nfsshare");
 # remote nfs share entries
 index=0;
 while [ ${index} -le ${count} ]; do
-    entry=$(omv_config_get "//services/remoteshare/share[position()=${index}]/fstab_line")
+    entry=$(omv_config_get "//services/remoteshare/nfsshares/nfsshare[position()=${index}]/fstab_line")
     if [ "${entry}" != "" ]; then
         echo ${entry}
     fi
