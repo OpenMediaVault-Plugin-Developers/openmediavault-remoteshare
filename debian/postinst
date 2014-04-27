@@ -12,7 +12,11 @@ configure)
         echo "Initial configuration."
         object="<nfsshares></nfsshares>"
         object="${object}<smbshares></smbshares>"
+        object="${object}<webdavshares></webdavshares>"
         omv_config_add_element "/config/services" "remoteshare" "${object}" true
+    elif ! omv_config_exists "/config/services/remoteshare/webdavshares"; then
+        # webdavshares were added in a later version of the plugin so need to be added if they don't exist
+        omv_config_add_element "/config/services/remoteshare" "webdavshares" "" false
     fi
 
     dpkg-trigger update-fixperms

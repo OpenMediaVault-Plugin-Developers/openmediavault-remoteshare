@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-18 08:51-0500\n"
+"POT-Creation-Date: 2014-04-24 13:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,10 +89,25 @@ msgstr ""
 msgid "This share is already in use by another remote Samba share."
 msgstr ""
 
+msgid "This share is already in use by another remote WebDAV share."
+msgstr ""
+
+msgid "URL of the WebDAV resource."
+msgstr ""
+
 msgid "Use File"
 msgstr ""
 
 msgid "Username"
+msgstr ""
+
+msgid "WebDAV"
+msgstr ""
+
+msgid "WebDAV URL"
+msgstr ""
+
+msgid "WebDAV resource will be mounted as this shared folder for use in other plugins."
 msgstr ""
 
 msgid "n/a"
