@@ -16,9 +16,20 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-[ "$IFACE" != "lo" ] || exit 0
+# Don't bother to mount when lo is configured.
+if [ "$IFACE" = lo ]; then
+    exit 0
+fi
 
-[ "$ADDRFAM" = "inet" ] || [ "$ADDRFAM" = "inet6" ] || exit 0
+# Only run from ifup.
+if [ "$MODE" != start ]; then
+    exit 0
+fi
+
+# we only cares about inet and inet6.
+if [ "$ADDRFAM" != inet ] && [ "$ADDRFAM" != inet6 ]; then
+    exit 0
+fi
 
 
 fstabFiles=$({
