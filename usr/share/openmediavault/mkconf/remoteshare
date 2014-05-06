@@ -24,7 +24,6 @@ CRED_FILE="/root/.smbcredentials-"
 OMV_REMOTESHARE_SECTION=${OMV_REMOTESHARE_SECTION:-"omv-remoteshare"}
 OMV_DAVFS2_CONFIG=${OMV_DAVFS2_CONFIG:-"/etc/davfs2/davfs2.conf"}
 OMV_DAVFS2_SECRETS=${OMV_DAVFS2_SECRETS:-"/etc/davfs2/secrets"}
-OMV_RC_LOCAL=${OMV_RC_LOCAL:-"/etc/rc.local"}
 
 count=$(omv_config_get_count "//services/remoteshare/smbshares/smbshare");
 
@@ -98,18 +97,6 @@ else
     sed -i "/# >>> \[${OMV_REMOTESHARE_SECTION}\]/,/# <<< \[${OMV_REMOTESHARE_SECTION}\]/ c ${cfgent}" ${OMV_DAVFS2_CONFIG}
 fi
 
-rclocent=$(
-    echo -n "# >>> [${OMV_REMOTESHARE_SECTION}]\n";
-    echo -n "mount -a -O _netdev\n";
-    echo -n "# <<< [${OMV_REMOTESHARE_SECTION}]\n"
-)
-
-# Append mount command to rc.local otherwise the shares will not be remounted on reboot (hint: _netdev)
-if ! grep -E "^# >>> \[${OMV_REMOTESHARE_SECTION}\]\s*$" ${OMV_RC_LOCAL} >/dev/null; then
-    sed -i -e "\$i ${rclocent}" ${OMV_RC_LOCAL} # $i means 'insert before last line (exit 0)'
-else
-    sed -i "/# >>> \[${OMV_REMOTESHARE_SECTION}\]/,/# <<< \[${OMV_REMOTESHARE_SECTION}\]/ c ${rclocent}" ${OMV_RC_LOCAL}
-fi
 
 omv-mkconf fstab
 mount -a
