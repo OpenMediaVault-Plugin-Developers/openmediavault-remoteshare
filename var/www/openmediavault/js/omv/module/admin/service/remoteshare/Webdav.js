@@ -75,6 +75,15 @@ Ext.define("OMV.module.admin.service.remoteshare.WebdavShare", {
             fieldLabel : _("Password"),
             allowBlank : false
         },{
+            xtype      : "checkbox",
+            name       : "use_locks",
+            fieldLabel : _("use_locks"),
+            checked    : true,
+            plugins    : [{
+                ptype : "fieldinfo",
+                text  : _("Whether to lock files on the server when they are opened for writing.")
+            }]
+        },{
             xtype      : "textfield",
             name       : "extraoptions",
             fieldLabel : _("Extra options"),

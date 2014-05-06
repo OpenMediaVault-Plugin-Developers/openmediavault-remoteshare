@@ -24,7 +24,6 @@ CRED_FILE="/root/.smbcredentials-"
 OMV_REMOTESHARE_SECTION=${OMV_REMOTESHARE_SECTION:-"omv-remoteshare"}
 OMV_DAVFS2_CONFIG=${OMV_DAVFS2_CONFIG:-"/etc/davfs2/davfs2.conf"}
 OMV_DAVFS2_SECRETS=${OMV_DAVFS2_SECRETS:-"/etc/davfs2/secrets"}
-OMV_RC_LOCAL=${OMV_RC_LOCAL:-"/etc/rc.local"}
 
 count=$(omv_config_get_count "//services/remoteshare/smbshares/smbshare");
 
@@ -35,12 +34,12 @@ while [ ${index} -le ${count} ]; do
     sfref=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/sharedfolderref")
     username=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/username")
     password=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/password")
-    
+
     if [ "${credfile}" != "0" ]; then
         echo "username=${username}" > ${CRED_FILE}${sfref}
         echo "password=${password}" >> ${CRED_FILE}${sfref}
     fi
-    
+
     index=$(( ${index} + 1 ))
 done;
 
@@ -56,9 +55,9 @@ secent=$(
         password=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/password")
         sfref=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/sharedfolderref")
         sfpath=$(omv_get_sharedfolder_path "${sfref}")
-    
+
         echo -n "${sfpath} ${username} ${password}\n"
-    
+
         index=$(( ${index} + 1 ))
     done;
     echo -n "# <<< [${OMV_REMOTESHARE_SECTION}]"
@@ -71,18 +70,33 @@ else
     sed -i "/# >>> \[${OMV_REMOTESHARE_SECTION}\]/,/# <<< \[${OMV_REMOTESHARE_SECTION}\]/ c ${secent}" ${OMV_DAVFS2_SECRETS}
 fi
 
-rclocent=$(
+# add configuration to davfs2 config file
+cfgent=$(
     echo -n "# >>> [${OMV_REMOTESHARE_SECTION}]\n";
-    echo -n "mount -a -O _netdev\n";
-    echo -n "# <<< [${OMV_REMOTESHARE_SECTION}]\n"
+    count=$(omv_config_get_count "//services/remoteshare/webdavshares/webdavshare");
+
+    # remote webdav share entries
+    index=1;
+    while [ ${index} -le ${count} ]; do
+        use_locks=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/use_locks")
+        sfref=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/sharedfolderref")
+        sfpath=$(omv_get_sharedfolder_path "${sfref}")
+
+        echo -n "[${sfpath}]\n"
+        echo -n "use_locks ${use_locks}\n"
+
+        index=$(( ${index} + 1 ))
+    done;
+    echo -n "# <<< [${OMV_REMOTESHARE_SECTION}]"
 )
-    
-# Append mount command to rc.local otherwise the shares will not be remounted on reboot (hint: _netdev)
-if ! grep -E "^# >>> \[${OMV_REMOTESHARE_SECTION}\]\s*$" ${OMV_RC_LOCAL} >/dev/null; then
-    sed -i -e "\$i ${rclocent}" ${OMV_RC_LOCAL} # $i means 'insert before last line (exit 0)'
+
+# Append credentials to secrets file if not still present or replace existing entries.
+if ! grep -E "^# >>> \[${OMV_REMOTESHARE_SECTION}\]\s*$" ${OMV_DAVFS2_CONFIG} >/dev/null; then
+    echo -e "${cfgent}" >> ${OMV_DAVFS2_CONFIG}
 else
-    sed -i "/# >>> \[${OMV_REMOTESHARE_SECTION}\]/,/# <<< \[${OMV_REMOTESHARE_SECTION}\]/ c ${rclocent}" ${OMV_RC_LOCAL}
+    sed -i "/# >>> \[${OMV_REMOTESHARE_SECTION}\]/,/# <<< \[${OMV_REMOTESHARE_SECTION}\]/ c ${cfgent}" ${OMV_DAVFS2_CONFIG}
 fi
+
 
 omv-mkconf fstab
 mount -a

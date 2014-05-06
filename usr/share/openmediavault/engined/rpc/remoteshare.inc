@@ -499,6 +499,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
 
         // Modify the result object.
+        $object['use_locks'] = boolval($object['use_locks']);
 
         return $object;
     }
@@ -518,6 +519,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
                 "sharedfolderref" : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' },
                 "username"        : { "type" : "string", "optional" : true },
                 "password"        : { "type" : "string", "optional" : true },
+                "use_locks"       : { "type" : "boolean" },
                 "extraoptions"    : { "type" : "string" }
             }
         }');
@@ -545,6 +547,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
             "sharedfolderref" => $params['sharedfolderref'],
             "username"        => $params['username'],
             "password"        => $params['password'],
+            "use_locks"       => array_boolval($params, 'use_locks'),
             "extraoptions"    => $params['extraoptions'],
         );
 
