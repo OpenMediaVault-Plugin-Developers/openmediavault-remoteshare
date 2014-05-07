@@ -51,8 +51,9 @@ count=$(omv_config_get_count "//services/remoteshare/webdavshares/webdavshare");
 # remote WebDAV share entries
 index=0;
 while [ ${index} -le ${count} ]; do
+    enable=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/enable")
     entry=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/fstab_line")
-    if [ "${entry}" != "" ]; then
+    if [ "${enable}" != "0" -a "${entry}" != "" ]; then
         echo ${entry}
     fi
     index=$(( ${index} + 1 ))
