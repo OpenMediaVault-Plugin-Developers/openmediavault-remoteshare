@@ -499,6 +499,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
 
         // Modify the result object.
+        $object['enable'] = boolval($object['enable']);
         $object['use_locks'] = boolval($object['use_locks']);
 
         return $object;
@@ -515,6 +516,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
             "type"       : "object",
             "properties" : {
                 "uuid"            : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_UNDEFINED'].' },
+                "enable"          : { "type" : "boolean" },
                 "resource"        : { "type" : "string" },
                 "sharedfolderref" : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' },
                 "username"        : { "type" : "string", "optional" : true },
@@ -543,6 +545,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
         // Prepare the configuration object.
         $object = array(
             "uuid"            => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
+            "enable"          => array_boolval($params, 'enable'),
             "resource"        => $params['resource'],
             "sharedfolderref" => $params['sharedfolderref'],
             "username"        => $params['username'],

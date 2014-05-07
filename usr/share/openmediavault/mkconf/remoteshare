@@ -45,7 +45,6 @@ done;
 
 # add credentials to davfs2 secrets file
 secent=$(
-    echo -n "# >>> [${OMV_REMOTESHARE_SECTION}]\n";
     count=$(omv_config_get_count "//services/remoteshare/webdavshares/webdavshare");
 
     # remote webdav share entries
@@ -60,41 +59,80 @@ secent=$(
 
         index=$(( ${index} + 1 ))
     done;
-    echo -n "# <<< [${OMV_REMOTESHARE_SECTION}]"
 )
+# only add section headers if there are entries
+if [ -n "${secent}" ]; then
+    secent=$(
+        echo -n "# >>> [${OMV_REMOTESHARE_SECTION}]\n";
+        echo -n "${secent}"
+        echo -n "# <<< [${OMV_REMOTESHARE_SECTION}]"
+    )
+    empty=0
+else
+    empty=1
+fi
 
 # Append credentials to secrets file if not still present or replace existing entries.
 if ! grep -E "^# >>> \[${OMV_REMOTESHARE_SECTION}\]\s*$" ${OMV_DAVFS2_SECRETS} >/dev/null; then
     echo -e "${secent}" >> ${OMV_DAVFS2_SECRETS}
 else
-    sed -i "/# >>> \[${OMV_REMOTESHARE_SECTION}\]/,/# <<< \[${OMV_REMOTESHARE_SECTION}\]/ c ${secent}" ${OMV_DAVFS2_SECRETS}
+    if [ ${empty} -eq 1 ]; then
+        sed -i "/# >>> \[${OMV_REMOTESHARE_SECTION}\]/,/# <<< \[${OMV_REMOTESHARE_SECTION}\]/ d" ${OMV_DAVFS2_SECRETS}
+    else
+        sed -i "/# >>> \[${OMV_REMOTESHARE_SECTION}\]/,/# <<< \[${OMV_REMOTESHARE_SECTION}\]/ c ${secent}" ${OMV_DAVFS2_SECRETS}
+    fi
 fi
+
+# get list of current mounts
+mounts=$(mount)
 
 # add configuration to davfs2 config file
 cfgent=$(
-    echo -n "# >>> [${OMV_REMOTESHARE_SECTION}]\n";
     count=$(omv_config_get_count "//services/remoteshare/webdavshares/webdavshare");
 
     # remote webdav share entries
     index=1;
     while [ ${index} -le ${count} ]; do
+        enable=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/enable")
         use_locks=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/use_locks")
         sfref=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/sharedfolderref")
         sfpath=$(omv_get_sharedfolder_path "${sfref}")
 
-        echo -n "[${sfpath}]\n"
-        echo -n "use_locks ${use_locks}\n"
+        if [ "${enable}" != "0" ]; then
+            [ ${index} -gt 1 ] && echo -n "\n"
+            echo -n "[${sfpath}]\n"
+            echo -n "use_locks ${use_locks}\n"
+        else
+            if echo ${mounts} | grep -q "${sfpath}"; then
+                # entry is not enabled but currently mounted, so unmount it
+                umount ${sfpath}
+            fi
+        fi
 
         index=$(( ${index} + 1 ))
     done;
-    echo -n "# <<< [${OMV_REMOTESHARE_SECTION}]"
 )
+# only add section headers if there are entries
+if [ -n "${cfgent}" ]; then
+    cfgent=$(
+        echo -n "# >>> [${OMV_REMOTESHARE_SECTION}]\n";
+        echo -n "${cfgent}"
+        echo -n "# <<< [${OMV_REMOTESHARE_SECTION}]"
+    )
+    empty=0
+else
+    empty=1
+fi
 
 # Append credentials to secrets file if not still present or replace existing entries.
 if ! grep -E "^# >>> \[${OMV_REMOTESHARE_SECTION}\]\s*$" ${OMV_DAVFS2_CONFIG} >/dev/null; then
     echo -e "${cfgent}" >> ${OMV_DAVFS2_CONFIG}
 else
-    sed -i "/# >>> \[${OMV_REMOTESHARE_SECTION}\]/,/# <<< \[${OMV_REMOTESHARE_SECTION}\]/ c ${cfgent}" ${OMV_DAVFS2_CONFIG}
+    if [ ${empty} -eq 1 ]; then
+        sed -i "/# >>> \[${OMV_REMOTESHARE_SECTION}\]/,/# <<< \[${OMV_REMOTESHARE_SECTION}\]/ d" ${OMV_DAVFS2_CONFIG}
+    else
+        sed -i "/# >>> \[${OMV_REMOTESHARE_SECTION}\]/,/# <<< \[${OMV_REMOTESHARE_SECTION}\]/ c ${cfgent}" ${OMV_DAVFS2_CONFIG}
+    fi
 fi
 
 
