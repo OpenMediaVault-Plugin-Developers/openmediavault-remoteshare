@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-24 13:38+0200\n"
+"POT-Creation-Date: 2014-05-07 15:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,12 @@ msgid "Add share"
 msgstr ""
 
 msgid "Edit share"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Enabled"
 msgstr ""
 
 msgid "Export"
@@ -110,5 +116,11 @@ msgstr ""
 msgid "WebDAV resource will be mounted as this shared folder for use in other plugins."
 msgstr ""
 
+msgid "Whether to lock files on the server when they are opened for writing."
+msgstr ""
+
 msgid "n/a"
+msgstr ""
+
+msgid "use_locks"
 msgstr ""

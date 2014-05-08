@@ -499,6 +499,8 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
 
         // Modify the result object.
+        $object['enable'] = boolval($object['enable']);
+        $object['use_locks'] = boolval($object['use_locks']);
 
         return $object;
     }
@@ -514,10 +516,12 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
             "type"       : "object",
             "properties" : {
                 "uuid"            : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_UNDEFINED'].' },
+                "enable"          : { "type" : "boolean" },
                 "resource"        : { "type" : "string" },
                 "sharedfolderref" : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' },
                 "username"        : { "type" : "string", "optional" : true },
                 "password"        : { "type" : "string", "optional" : true },
+                "use_locks"       : { "type" : "boolean" },
                 "extraoptions"    : { "type" : "string" }
             }
         }');
@@ -541,10 +545,12 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
         // Prepare the configuration object.
         $object = array(
             "uuid"            => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
+            "enable"          => array_boolval($params, 'enable'),
             "resource"        => $params['resource'],
             "sharedfolderref" => $params['sharedfolderref'],
             "username"        => $params['username'],
             "password"        => $params['password'],
+            "use_locks"       => array_boolval($params, 'use_locks'),
             "extraoptions"    => $params['extraoptions'],
         );
 
@@ -554,6 +560,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
             $extraOptions = "_netdev";
 
         $sfPath = OMVRpc::exec("ShareMgmt", "getPath", array("uuid" => $params['sharedfolderref']), $context);
+        rtrim($sfPath, "/");
 
         // <resourceurl></local/directory><davfs><options> 0 0
         // https://server/path /pub davfs _netdev,user,rw,noauto  0  0 
