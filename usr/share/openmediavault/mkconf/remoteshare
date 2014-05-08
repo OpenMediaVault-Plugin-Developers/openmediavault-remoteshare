@@ -54,6 +54,7 @@ secent=$(
         password=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/password")
         sfref=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/sharedfolderref")
         sfpath=$(omv_get_sharedfolder_path "${sfref}")
+        sfpath=${sfpath%/} #strip off trailing slash, if any
 
         echo -n "${sfpath} ${username} ${password}\n"
 
@@ -83,9 +84,6 @@ else
     fi
 fi
 
-# get list of current mounts
-mounts=$(mount)
-
 # add configuration to davfs2 config file
 cfgent=$(
     count=$(omv_config_get_count "//services/remoteshare/webdavshares/webdavshare");
@@ -95,17 +93,18 @@ cfgent=$(
     while [ ${index} -le ${count} ]; do
         enable=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/enable")
         use_locks=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/use_locks")
+        resource=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/resource")
         sfref=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/sharedfolderref")
         sfpath=$(omv_get_sharedfolder_path "${sfref}")
+        sfpath=${sfpath%/} #strip off trailing slash, if any
 
         if [ "${enable}" != "0" ]; then
-            [ ${index} -gt 1 ] && echo -n "\n"
             echo -n "[${sfpath}]\n"
             echo -n "use_locks ${use_locks}\n"
         else
-            if echo ${mounts} | grep -q "${sfpath}"; then
+            if mount | grep -q -E "^${resource} on ${sfpath}"; then
                 # entry is not enabled but currently mounted, so unmount it
-                umount ${sfpath}
+                umount ${sfpath} >/dev/null 2>&1
             fi
         fi
 

@@ -560,6 +560,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
             $extraOptions = "_netdev";
 
         $sfPath = OMVRpc::exec("ShareMgmt", "getPath", array("uuid" => $params['sharedfolderref']), $context);
+        rtrim($sfPath, "/");
 
         // <resourceurl></local/directory><davfs><options> 0 0
         // https://server/path /pub davfs _netdev,user,rw,noauto  0  0 
