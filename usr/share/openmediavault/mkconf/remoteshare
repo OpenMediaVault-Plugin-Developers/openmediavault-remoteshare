@@ -68,16 +68,16 @@ if [ -n "${secent}" ]; then
         echo -n "${secent}"
         echo -n "# <<< [${OMV_REMOTESHARE_SECTION}]"
     )
-    empty=0
+    noEnt=0
 else
-    empty=1
+    noEnt=1
 fi
 
 # Append credentials to secrets file if not still present or replace existing entries.
 if ! grep -E "^# >>> \[${OMV_REMOTESHARE_SECTION}\]\s*$" ${OMV_DAVFS2_SECRETS} >/dev/null; then
     echo -e "${secent}" >> ${OMV_DAVFS2_SECRETS}
 else
-    if [ ${empty} -eq 1 ]; then
+    if [ ${noEnt} -eq 1 ]; then
         sed -i "/# >>> \[${OMV_REMOTESHARE_SECTION}\]/,/# <<< \[${OMV_REMOTESHARE_SECTION}\]/ d" ${OMV_DAVFS2_SECRETS}
     else
         sed -i "/# >>> \[${OMV_REMOTESHARE_SECTION}\]/,/# <<< \[${OMV_REMOTESHARE_SECTION}\]/ c ${secent}" ${OMV_DAVFS2_SECRETS}
@@ -98,10 +98,17 @@ cfgent=$(
         sfpath=$(omv_get_sharedfolder_path "${sfref}")
         sfpath=${sfpath%/} #strip off trailing slash, if any
 
-        if [ "${enable}" != "0" ]; then
-            echo -n "[${sfpath}]\n"
-            echo -n "use_locks ${use_locks}\n"
-        else
+        echo -n "[${sfpath}]\n"
+        echo -n "use_locks ${use_locks}\n"
+        # for now the following config items are hard coded
+        echo -n "if_match_bug 1\n"
+        echo -n "cache_size 1\n"
+        echo -n "table_size 4096\n"
+        echo -n "delay_upload 1\n"
+        echo -n "gui_optimize 1\n"
+        echo -n "\n"
+
+        if [ ${enable} -eq 0 ]; then
             if mount | grep -q -E "^${resource} on ${sfpath}"; then
                 # entry is not enabled but currently mounted, so unmount it
                 umount ${sfpath} >/dev/null 2>&1
@@ -118,16 +125,16 @@ if [ -n "${cfgent}" ]; then
         echo -n "${cfgent}"
         echo -n "# <<< [${OMV_REMOTESHARE_SECTION}]"
     )
-    empty=0
+    noEnt=0
 else
-    empty=1
+    noEnt=1
 fi
 
 # Append credentials to secrets file if not still present or replace existing entries.
 if ! grep -E "^# >>> \[${OMV_REMOTESHARE_SECTION}\]\s*$" ${OMV_DAVFS2_CONFIG} >/dev/null; then
     echo -e "${cfgent}" >> ${OMV_DAVFS2_CONFIG}
 else
-    if [ ${empty} -eq 1 ]; then
+    if [ ${noEnt} -eq 1 ]; then
         sed -i "/# >>> \[${OMV_REMOTESHARE_SECTION}\]/,/# <<< \[${OMV_REMOTESHARE_SECTION}\]/ d" ${OMV_DAVFS2_CONFIG}
     else
         sed -i "/# >>> \[${OMV_REMOTESHARE_SECTION}\]/,/# <<< \[${OMV_REMOTESHARE_SECTION}\]/ c ${cfgent}" ${OMV_DAVFS2_CONFIG}
