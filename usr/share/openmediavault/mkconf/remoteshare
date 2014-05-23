@@ -43,6 +43,7 @@ while [ ${index} -le ${count} ]; do
     index=$(( ${index} + 1 ))
 done;
 
+
 # add credentials to davfs2 secrets file
 secent=$(
     count=$(omv_config_get_count "//services/remoteshare/webdavshares/webdavshare");
@@ -92,20 +93,16 @@ cfgent=$(
     index=1;
     while [ ${index} -le ${count} ]; do
         enable=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/enable")
-        use_locks=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/use_locks")
+        davfs_opts=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/davfs_opts")
         resource=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/resource")
         sfref=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/sharedfolderref")
         sfpath=$(omv_get_sharedfolder_path "${sfref}")
         sfpath=${sfpath%/} #strip off trailing slash, if any
 
         echo -n "[${sfpath}]\n"
-        echo -n "use_locks ${use_locks}\n"
-        # for now the following config items are hard coded
-        echo -n "if_match_bug 1\n"
-        echo -n "cache_size 1\n"
-        echo -n "table_size 4096\n"
-        echo -n "delay_upload 1\n"
-        echo -n "gui_optimize 1\n"
+        for opt in ${davfs_opts//;/ }; do
+          echo -n "${opt//::/ }\n"
+        done
         echo -n "\n"
 
         if [ ${enable} -eq 0 ]; then

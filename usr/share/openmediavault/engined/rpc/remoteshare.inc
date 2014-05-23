@@ -478,6 +478,15 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
             $params['sortfield'], $params['sortdir']);
     }
 
+    private $davfs_defaults = array(
+        'use_locks' => 0,
+        'gui_optimize' => 1,
+        'if_match_bug' => 1,
+        'cache_size' => 1,
+        'table_size' => 4096,
+        'delay_upload' => 1,
+   );
+
     public function getWebdavShare($params, $context) {
         global $xmlConfig;
 
@@ -500,7 +509,13 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
 
         // Modify the result object.
         $object['enable'] = boolval($object['enable']);
-        $object['use_locks'] = boolval($object['use_locks']);
+
+        preg_match_all("/([^::]+)::([^;]+)/", $object['davfs_opts'], $davfs_opts);
+        $davfs_opts = array_combine($davfs_opts[1], $davfs_opts[2]);
+
+        foreach($this->davfs_defaults as $optk => $optv) {
+          $object[$optk] = (empty($davfs_opts[$optk])) ? $optv : $davfs_opts[$optk];
+        }
 
         return $object;
     }
@@ -550,9 +565,13 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
             "sharedfolderref" => $params['sharedfolderref'],
             "username"        => $params['username'],
             "password"        => $params['password'],
-            "use_locks"       => array_boolval($params, 'use_locks'),
             "extraoptions"    => $params['extraoptions'],
         );
+
+        foreach($this->davfs_defaults as $optk => $optv) {
+          $optarr[] = $optk."::".(empty($params[$optk]) ? $optv : $params[$optk]);
+        }
+        $object['davfs_opts'] = implode(';', $optarr);
 
         if(!empty($object['extraoptions']))
             $extraOptions = $object['extraoptions'];
