@@ -536,8 +536,13 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
                 "sharedfolderref" : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' },
                 "username"        : { "type" : "string", "optional" : true },
                 "password"        : { "type" : "string", "optional" : true },
+                "extraoptions"    : { "type" : "string" },
                 "use_locks"       : { "type" : "boolean" },
-                "extraoptions"    : { "type" : "string" }
+                "gui_optimize"    : { "type" : "boolean" },
+                "if_match_bug"    : { "type" : "boolean" },
+                "cache_size"      : { "type" : "integer", "minimum" : 1, "maximum" : 65535 },
+                "table_size"      : { "type" : "integer", "minimum" : 1, "maximum" : 65535 },
+                "delay_upload"    : { "type" : "integer", "minimum" : 0, "maximum" : 65535 }
             }
         }');
 

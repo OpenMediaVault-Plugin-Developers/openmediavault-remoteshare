@@ -80,20 +80,89 @@ Ext.define("OMV.module.admin.service.remoteshare.WebdavShare", {
             fieldLabel : _("Password"),
             allowBlank : false
         },{
-            xtype      : "checkbox",
-            name       : "use_locks",
-            fieldLabel : _("use_locks"),
-            checked    : true,
-            plugins    : [{
-                ptype : "fieldinfo",
-                text  : _("Whether to lock files on the server when they are opened for writing.")
-            }]
-        },{
             xtype      : "textfield",
             name       : "extraoptions",
             fieldLabel : _("Extra options"),
             allowBlank : true,
             value      : "_netdev"
+        },{
+            xtype      : "fieldset",
+            title      : _("Davfs2 settings"),
+            fieldDefaults: {
+                labelSeparator: ""
+            },
+            items: [{
+                border : false,
+                html   : "<p>" +
+                         _("These settings directly influence how the WebDAV resource is mounted as a local filesystem. Please only change the defaults if you know what you are doing.") +
+                         "</p>"
+           },{
+                xtype      : "checkbox",
+                name       : "use_locks",
+                fieldLabel : _("use_locks"),
+                checked    : false,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("Whether to lock files on the server when they are opened for writing.")
+                }]
+            },{
+                xtype      : "checkbox",
+                name       : "gui_optimize",
+                fieldLabel : _("gui_optimize"),
+                checked    : true,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("Optimize fetching file infos for all files in a directory vs. just for the file to be opened.")
+                }]
+            },{
+                xtype      : "checkbox",
+                name       : "if_match_bug",
+                fieldLabel : _("if_match_bug"),
+                checked    : true,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("Use HEAD instead of If-Match and If-None-Match-headers.")
+                }]
+            },{
+                xtype         : "numberfield",
+                name          : "cache_size",
+                fieldLabel    : _("cache_size"),
+                minValue      : 1,
+                maxValue      : 65535,
+                allowDecimals : false,
+                allowBlank    : false,
+                value         : 1,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("The amount of disk space in MiByte that may be used.")
+                }]
+            },{
+                xtype         : "numberfield",
+                name          : "table_size",
+                fieldLabel    : _("table_size"),
+                minValue      : 1,
+                maxValue      : 65535,
+                allowDecimals : false,
+                allowBlank    : false,
+                value         : 4096,
+                plugins       : [{
+                    ptype : "fieldinfo",
+                    text  : _("The number of entries in the hash table for each known file. The value should be a power of 2.")
+                }]
+            },{
+                xtype         : "numberfield",
+                name          : "delay_upload",
+                fieldLabel    : _("delay_upload"),
+                minValue      : 0,
+                maxValue      : 65535,
+                allowDecimals : false,
+                allowBlank    : false,
+                value         : 1,
+                plugins       : [{
+                    ptype : "fieldinfo",
+                    text  : _("Delay in seconds before a file will be uploaded to the server to avoid upload of temporary files.")
+                }]
+            }]
         }];
     }
 });
