@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-18 08:51-0500\n"
-"PO-Revision-Date: 2014-04-09 01:51+0000\n"
-"Last-Translator: kansuke <kansuke4649@gmail.com>\n"
+"POT-Creation-Date: 2014-05-27 18:32-0500\n"
+"PO-Revision-Date: 2014-05-27 23:32+0000\n"
+"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,8 +20,22 @@ msgstr ""
 msgid "Add share"
 msgstr "共有の追加"
 
+msgid "Davfs2 settings"
+msgstr ""
+
+msgid ""
+"Delay in seconds before a file will be uploaded to the server to avoid "
+"upload of temporary files."
+msgstr ""
+
 msgid "Edit share"
 msgstr "共有の編集"
+
+msgid "Enable"
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
 
 msgid "Export"
 msgstr "エクスポート"
@@ -64,6 +78,11 @@ msgstr "NFS共有は他のプラグインで使用するためにこの共有フ
 msgid "NFSv4"
 msgstr "NFSv4"
 
+msgid ""
+"Optimize fetching file infos for all files in a directory vs. just for the "
+"file to be opened."
+msgstr ""
+
 msgid "Password"
 msgstr "パスワード"
 
@@ -89,17 +108,72 @@ msgstr "共有名"
 msgid "Shared Folder"
 msgstr "共有フォルダ"
 
+msgid "The amount of disk space in MiByte that may be used."
+msgstr ""
+
+msgid ""
+"The number of entries in the hash table for each known file. The value "
+"should be a power of 2."
+msgstr ""
+
+msgid ""
+"These settings directly influence how the WebDAV resource is mounted as a "
+"local filesystem. Please only change the defaults if you know what you are "
+"doing."
+msgstr ""
+
 msgid "This share is already in use by another remote NFS share."
 msgstr "この共有は、別のリモートNFS共有で既に使用されています。"
 
 msgid "This share is already in use by another remote Samba share."
 msgstr "この共有は、別のリモートSamba共有で既に使用されています。"
 
+msgid "This share is already in use by another remote WebDAV share."
+msgstr ""
+
+msgid "URL of the WebDAV resource."
+msgstr ""
+
 msgid "Use File"
 msgstr "ファイルを使用する"
+
+msgid "Use HEAD instead of If-Match and If-None-Match-headers."
+msgstr ""
 
 msgid "Username"
 msgstr "ユーザー名"
 
+msgid "WebDAV"
+msgstr ""
+
+msgid "WebDAV URL"
+msgstr ""
+
+msgid ""
+"WebDAV resource will be mounted as this shared folder for use in other "
+"plugins."
+msgstr ""
+
+msgid "Whether to lock files on the server when they are opened for writing."
+msgstr ""
+
+msgid "cache_size"
+msgstr ""
+
+msgid "delay_upload"
+msgstr ""
+
+msgid "gui_optimize"
+msgstr ""
+
+msgid "if_match_bug"
+msgstr ""
+
 msgid "n/a"
 msgstr "n/a"
+
+msgid "table_size"
+msgstr ""
+
+msgid "use_locks"
+msgstr ""

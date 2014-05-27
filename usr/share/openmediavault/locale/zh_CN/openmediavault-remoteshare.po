@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-18 08:51-0500\n"
-"PO-Revision-Date: 2014-03-25 11:10+0000\n"
-"Last-Translator: dezi121 <by@songming.me>\n"
+"POT-Creation-Date: 2014-05-27 18:32-0500\n"
+"PO-Revision-Date: 2014-05-27 23:32+0000\n"
+"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,11 +21,25 @@ msgstr ""
 msgid "Add share"
 msgstr "添加共享"
 
+msgid "Davfs2 settings"
+msgstr ""
+
+msgid ""
+"Delay in seconds before a file will be uploaded to the server to avoid "
+"upload of temporary files."
+msgstr ""
+
 msgid "Edit share"
 msgstr "编辑共享"
 
+msgid "Enable"
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
+
 msgid "Export"
-msgstr "导出"
+msgstr "输出"
 
 msgid "Extra options"
 msgstr "扩展选项"
@@ -36,10 +50,10 @@ msgstr "游客"
 msgid ""
 "Hostname, IP address, or fully qualified domain name of the server exporting"
 " the file system."
-msgstr "主机名，IP地址或者文件系统对应的完整域名。"
+msgstr "主机名、IP地址或者文件系统对应的完整域名。"
 
 msgid "Hostname, IP address, or fully qualified domain name of the server."
-msgstr "主机名，IP地址或者服务器的完整域名。"
+msgstr "主机名、IP地址或者服务器的完整域名。"
 
 msgid "If checked, share is mounted as guest."
 msgstr "如果选中，将按游客模式挂载共享。"
@@ -53,7 +67,7 @@ msgid "Leave unchecked for NFSv2 or NFSv3 servers. Check for NFSv4 servers."
 msgstr "如果没有勾选NFSv2或NFSv3服务选项，只检查NFSv4服务器。"
 
 msgid "Mount as"
-msgstr ""
+msgstr "挂载用户"
 
 msgid "NFS"
 msgstr "NFS"
@@ -65,14 +79,19 @@ msgstr "将挂载NFS文件系统到该共享文件夹以供其它插件使用。
 msgid "NFSv4"
 msgstr "NFSv4"
 
+msgid ""
+"Optimize fetching file infos for all files in a directory vs. just for the "
+"file to be opened."
+msgstr ""
+
 msgid "Password"
 msgstr "密码"
 
 msgid "Path to the exported directory."
-msgstr "导出路径目录。"
+msgstr "输出路径目录。"
 
 msgid "Remote Shares"
-msgstr "远程共享"
+msgstr ""
 
 msgid "Samba"
 msgstr "Samba"
@@ -90,17 +109,72 @@ msgstr "共享名"
 msgid "Shared Folder"
 msgstr "共享文件夹"
 
+msgid "The amount of disk space in MiByte that may be used."
+msgstr ""
+
+msgid ""
+"The number of entries in the hash table for each known file. The value "
+"should be a power of 2."
+msgstr ""
+
+msgid ""
+"These settings directly influence how the WebDAV resource is mounted as a "
+"local filesystem. Please only change the defaults if you know what you are "
+"doing."
+msgstr ""
+
 msgid "This share is already in use by another remote NFS share."
 msgstr "该共享已经被其它远程NFS共享使用了。"
 
 msgid "This share is already in use by another remote Samba share."
 msgstr "该共享已经被其它远程Samba共享使用了。"
 
+msgid "This share is already in use by another remote WebDAV share."
+msgstr ""
+
+msgid "URL of the WebDAV resource."
+msgstr ""
+
 msgid "Use File"
 msgstr "使用文件"
+
+msgid "Use HEAD instead of If-Match and If-None-Match-headers."
+msgstr ""
 
 msgid "Username"
 msgstr "用户名"
 
+msgid "WebDAV"
+msgstr ""
+
+msgid "WebDAV URL"
+msgstr ""
+
+msgid ""
+"WebDAV resource will be mounted as this shared folder for use in other "
+"plugins."
+msgstr ""
+
+msgid "Whether to lock files on the server when they are opened for writing."
+msgstr ""
+
+msgid "cache_size"
+msgstr ""
+
+msgid "delay_upload"
+msgstr ""
+
+msgid "gui_optimize"
+msgstr ""
+
+msgid "if_match_bug"
+msgstr ""
+
 msgid "n/a"
 msgstr "n/a"
+
+msgid "table_size"
+msgstr ""
+
+msgid "use_locks"
+msgstr ""
