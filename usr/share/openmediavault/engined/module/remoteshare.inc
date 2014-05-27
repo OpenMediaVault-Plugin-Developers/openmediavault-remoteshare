@@ -51,6 +51,10 @@ class OMVModuleRemoteShare extends OMVModuleServiceAbstract implements OMVINotif
             "org.openmediavault.services.remoteshare.smbshares.smbshare",
             array($this, "setDirty"));
         $dispatcher->addListener(
+            OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
+            "org.openmediavault.services.remoteshare.webdavshares.webdavshare",
+            array($this, "setDirty"));
+        $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
             "org.openmediavault.system.shares.sharedfolder",
             array($this, "onSharedFolder"));
