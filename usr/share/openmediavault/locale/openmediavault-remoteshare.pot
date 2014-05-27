@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-07 15:26+0200\n"
+"POT-Creation-Date: 2014-05-27 14:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Add share"
+msgstr ""
+
+msgid "Davfs2 settings"
+msgstr ""
+
+msgid "Delay in seconds before a file will be uploaded to the server to avoid upload of temporary files."
 msgstr ""
 
 msgid "Edit share"
@@ -65,6 +71,9 @@ msgstr ""
 msgid "NFSv4"
 msgstr ""
 
+msgid "Optimize fetching file infos for all files in a directory vs. just for the file to be opened."
+msgstr ""
+
 msgid "Password"
 msgstr ""
 
@@ -89,6 +98,15 @@ msgstr ""
 msgid "Shared Folder"
 msgstr ""
 
+msgid "The amount of disk space in MiByte that may be used."
+msgstr ""
+
+msgid "The number of entries in the hash table for each known file. The value should be a power of 2."
+msgstr ""
+
+msgid "These settings directly influence how the WebDAV resource is mounted as a local filesystem. Please only change the defaults if you know what you are doing."
+msgstr ""
+
 msgid "This share is already in use by another remote NFS share."
 msgstr ""
 
@@ -102,6 +120,9 @@ msgid "URL of the WebDAV resource."
 msgstr ""
 
 msgid "Use File"
+msgstr ""
+
+msgid "Use HEAD instead of If-Match and If-None-Match-headers."
 msgstr ""
 
 msgid "Username"
@@ -119,7 +140,22 @@ msgstr ""
 msgid "Whether to lock files on the server when they are opened for writing."
 msgstr ""
 
+msgid "cache_size"
+msgstr ""
+
+msgid "delay_upload"
+msgstr ""
+
+msgid "gui_optimize"
+msgstr ""
+
+msgid "if_match_bug"
+msgstr ""
+
 msgid "n/a"
+msgstr ""
+
+msgid "table_size"
 msgstr ""
 
 msgid "use_locks"
