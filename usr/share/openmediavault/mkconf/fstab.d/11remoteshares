@@ -27,8 +27,9 @@ count=$(omv_config_get_count "//services/remoteshare/nfsshares/nfsshare");
 # remote nfs share entries
 index=0;
 while [ ${index} -le ${count} ]; do
+    enable=$(omv_config_get "//services/remoteshare/nfsshares/nfsshare[position()=${index}]/enable")
     entry=$(omv_config_get "//services/remoteshare/nfsshares/nfsshare[position()=${index}]/fstab_line")
-    if [ "${entry}" != "" ]; then
+    if [ "${enable}" != "0" -a "${entry}" != "" ]; then
         echo ${entry}
     fi
     index=$(( ${index} + 1 ))
@@ -39,8 +40,9 @@ count=$(omv_config_get_count "//services/remoteshare/smbshares/smbshare");
 # remote samba share entries
 index=0;
 while [ ${index} -le ${count} ]; do
+    enable=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/enable")
     entry=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/fstab_line")
-    if [ "${entry}" != "" ]; then
+    if [ "${enable}" != "0" -a "${entry}" != "" ]; then
         echo ${entry}
     fi
     index=$(( ${index} + 1 ))

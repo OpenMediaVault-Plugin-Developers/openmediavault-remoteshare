@@ -48,6 +48,11 @@ Ext.define("OMV.module.admin.service.remoteshare.NfsShare", {
     getFormItems : function() {
         var me = this;
         return [{
+            xtype      : "checkbox",
+            name       : "enable",
+            fieldLabel : _("Enable"),
+            checked    : true
+        },{
             xtype      : "textfield",
             name       : "server",
             fieldLabel : _("Server"),
@@ -108,6 +113,17 @@ Ext.define("OMV.module.admin.service.remoteshare.NfsShares", {
     stateful          : true,
     stateId           : "1649057b-b1c0-1c48-a4c1-8c8d1fe52d7b",
     columns           : [{
+        xtype     : "booleaniconcolumn",
+        text      : _("Enabled"),
+        sortable  : true,
+        dataIndex : "enable",
+        stateId   : "enable",
+        align     : "center",
+        width     : 80,
+        resizable : false,
+        trueIcon  : "switch_on.png",
+        falseIcon : "switch_off.png"
+    },{
         text      : _("Server"),
         sortable  : true,
         dataIndex : "server",
@@ -133,6 +149,7 @@ Ext.define("OMV.module.admin.service.remoteshare.NfsShares", {
                     idProperty  : "uuid",
                     fields      : [
                         { name : "uuid", type: "string" },
+                        { name : "enable", type: "boolean" },
                         { name : "server", type: "string" },
                         { name : "export", type: "string" },
                         { name : "sharename", type: "string" }

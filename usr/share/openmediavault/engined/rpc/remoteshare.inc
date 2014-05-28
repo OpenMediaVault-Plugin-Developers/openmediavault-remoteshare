@@ -110,6 +110,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
 
         // Modify the result object.
+        $object['enable'] = boolval($object['enable']);
         $object['nfs'] = boolval($object['nfs']);
 
         return $object;
@@ -126,6 +127,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
             "type"       : "object",
             "properties" : {
                 "uuid"            : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_UNDEFINED'].' },
+                "enable"          : { "type" : "boolean" },
                 "server"          : { "type" : "string" },
                 "export"          : { "type" : "string" },
                 "sharedfolderref" : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' },
@@ -153,6 +155,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
         // Prepare the configuration object.
         $object = array(
             "uuid"            => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
+            "enable"          => array_boolval($params, 'enable'),
             "server"          => $params['server'],
             "export"          => $params['export'],
             "sharedfolderref" => $params['sharedfolderref'],
@@ -301,6 +304,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
 
         // Modify the result object.
+        $object['enable'] = boolval($object['enable']);
         $object['guest']   = boolval($object['guest']);
         $object['usefile'] = boolval($object['usefile']);
 
@@ -318,6 +322,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
             "type"       : "object",
             "properties" : {
                 "uuid"            : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_UNDEFINED'].' },
+                "enable"          : { "type" : "boolean" },
                 "server"          : { "type" : "string" },
                 "smbname"         : { "type" : "string" },
                 "sharedfolderref" : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' },
@@ -347,6 +352,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract {
         // Prepare the configuration object.
         $object = array(
             "uuid"            => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
+            "enable"          => array_boolval($params, 'enable'),
             "server"          => $params['server'],
             "smbname"         => $params['smbname'],
             "sharedfolderref" => $params['sharedfolderref'],

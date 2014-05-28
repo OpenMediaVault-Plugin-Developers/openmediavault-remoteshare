@@ -25,19 +25,55 @@ OMV_REMOTESHARE_SECTION=${OMV_REMOTESHARE_SECTION:-"omv-remoteshare"}
 OMV_DAVFS2_CONFIG=${OMV_DAVFS2_CONFIG:-"/etc/davfs2/davfs2.conf"}
 OMV_DAVFS2_SECRETS=${OMV_DAVFS2_SECRETS:-"/etc/davfs2/secrets"}
 
+
+count=$(omv_config_get_count "//services/remoteshare/nfsshares/nfsshare");
+
+# remote nfs share entries
+index=1;
+while [ ${index} -le ${count} ]; do
+    enable=$(omv_config_get "//services/remoteshare/nfsshares/nfsshare[position()=${index}]/enable")
+    server=$(omv_config_get "//services/remoteshare/nfsshares/nfsshare[position()=${index}]/server")
+    export=$(omv_config_get "//services/remoteshare/nfsshares/nfsshare[position()=${index}]/export")
+    sfref=$(omv_config_get "//services/remoteshare/nfsshares/nfsshare[position()=${index}]/sharedfolderref")
+    sfpath=$(omv_get_sharedfolder_path "${sfref}")
+    sfpath=${sfpath%/} #strip off trailing slash, if any
+
+    if [ ${enable} -eq 0 ]; then
+        if mount | grep -q -E "^${server}:${export} on ${sfpath}"; then
+            # entry is not enabled but currently mounted, so unmount it
+            umount ${sfpath} >/dev/null 2>&1
+        fi
+    fi
+
+    index=$(( ${index} + 1 ))
+done;
+
+
 count=$(omv_config_get_count "//services/remoteshare/smbshares/smbshare");
 
 # remote samba share entries
 index=1;
 while [ ${index} -le ${count} ]; do
+    enable=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/enable")
     credfile=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/usefile")
     sfref=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/sharedfolderref")
     username=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/username")
     password=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/password")
+    server=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/server")
+    smbname=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/smbname")
+    sfpath=$(omv_get_sharedfolder_path "${sfref}")
+    sfpath=${sfpath%/} #strip off trailing slash, if any
 
     if [ "${credfile}" != "0" ]; then
         echo "username=${username}" > ${CRED_FILE}${sfref}
         echo "password=${password}" >> ${CRED_FILE}${sfref}
+    fi
+
+    if [ ${enable} -eq 0 ]; then
+        if mount | grep -q -E "^//${server}/${smbname} on ${sfpath}"; then
+            # entry is not enabled but currently mounted, so unmount it
+            umount ${sfpath} >/dev/null 2>&1
+        fi
     fi
 
     index=$(( ${index} + 1 ))
