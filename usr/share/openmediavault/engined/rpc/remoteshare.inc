@@ -219,7 +219,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         // Look for duplicates
         if(!empty($params["sharedfolderref"]) && $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'])
         {
-            $xPath = sprintf("%s[sharedfolder='%s']", $this->getXPathNfsShare(), $params['sharedfolderref']);
+            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathNfsShare(), $params['sharedfolderref']);
             if (TRUE === $xmlConfig->exists($xPath))
             {
                 throw new OMVException(
@@ -227,7 +227,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                     gettext("This share is already in use by another remote NFS share.")
                 );
             }
-            $xPath = sprintf("%s[sharedfolder='%s']", $this->getXPathSmbShare(), $params['sharedfolderref']);
+            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathSmbShare(), $params['sharedfolderref']);
             if (TRUE === $xmlConfig->exists($xPath))
             {
                 throw new OMVException(
@@ -235,7 +235,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                     gettext("This share is already in use by another remote Samba share.")
                 );
             }
-            $xPath = sprintf("%s[sharedfolder='%s']", $this->getXPathWebdavShare(), $params['sharedfolderref']);
+            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathWebdavShare(), $params['sharedfolderref']);
             if (TRUE === $xmlConfig->exists($xPath))
             {
                 throw new OMVException(
@@ -269,10 +269,10 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         else
         {
             $extraOptions = "intr";
-            
+
         }
         $extrasOptions = "_netdev," . $extraOptions;
-        
+
         $sfPath = OMVRpc::exec("ShareMgmt", "getPath", array("uuid" => $params['sharedfolderref']), $context);
 
         // <server>:</remote/export></local/directory><nfs-type><options> 0 0
@@ -478,7 +478,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         // Look for duplicates
         if (!empty($params["sharedfolderref"]) && $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'])
         {
-            $xPath = sprintf("%s[sharedfolder='%s']", $this->getXPathNfsShare(), $params['sharedfolderref']);
+            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathNfsShare(), $params['sharedfolderref']);
             if (TRUE === $xmlConfig->exists($xPath))
             {
                 throw new OMVException(
@@ -486,7 +486,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                     gettext("This share is already in use by another remote NFS share.")
                 );
             }
-            $xPath = sprintf("%s[sharedfolder='%s']", $this->getXPathSmbShare(), $params['sharedfolderref']);
+            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathSmbShare(), $params['sharedfolderref']);
             if (TRUE === $xmlConfig->exists($xPath))
             {
                 throw new OMVException(
@@ -494,7 +494,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                     gettext("This share is already in use by another remote Samba share.")
                 );
             }
-            $xPath = sprintf("%s[sharedfolder='%s']", $this->getXPathWebdavShare(), $params['sharedfolderref']);
+            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathWebdavShare(), $params['sharedfolderref']);
             if (TRUE === $xmlConfig->exists($xPath))
             {
                 throw new OMVException(
@@ -769,7 +769,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         // Look for duplicates
         if (!empty($params["sharedfolderref"]) && $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'])
         {
-            $xPath = sprintf("%s[sharedfolder='%s']", $this->getXPathNfsShare(), $params['sharedfolderref']);
+            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathNfsShare(), $params['sharedfolderref']);
             if (TRUE === $xmlConfig->exists($xPath))
             {
                 throw new OMVException(
@@ -777,7 +777,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                     gettext("This share is already in use by another remote NFS share.")
                 );
             }
-            $xPath = sprintf("%s[sharedfolder='%s']", $this->getXPathSmbShare(), $params['sharedfolderref']);
+            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathSmbShare(), $params['sharedfolderref']);
             if (TRUE === $xmlConfig->exists($xPath))
             {
                 throw new OMVException(
@@ -785,7 +785,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                     gettext("This share is already in use by another remote Samba share.")
                 );
             }
-            $xPath = sprintf("%s[sharedfolder='%s']", $this->getXPathWebdavShare(), $params['sharedfolderref']);
+            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathWebdavShare(), $params['sharedfolderref']);
             if (TRUE === $xmlConfig->exists($xPath))
             {
                 throw new OMVException(

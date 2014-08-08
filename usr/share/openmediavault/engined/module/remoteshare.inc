@@ -22,6 +22,10 @@ require_once("openmediavault/util.inc");
 
 class OMVModuleRemoteShare extends OMVModuleServiceAbstract implements OMVINotifyListener
 {
+    const NFSSHARE = 'nfsshare';
+    const SMBSHARE = 'smbshare';
+    const WEBDAVSHARE = 'webdavshare';
+
     public function getName()
     {
         return "remoteshare";
@@ -40,6 +44,21 @@ class OMVModuleRemoteShare extends OMVModuleServiceAbstract implements OMVINotif
     private function getEventMessagePath()
     {
         return sprintf( "org.openmediavault.services.%s", $this->getPluginName() );
+    }
+
+    private function getEventMessagePathNfs()
+    {
+        return sprintf( "%s.%ss.%s", $this->getEventMessagePath(), self::NFSSHARE, self::NFSSHARE );
+    }
+
+    private function getEventMessagePathSmb()
+    {
+        return sprintf( "%s.%ss.%s", $this->getEventMessagePath(), self::SMBSHARE, self::SMBSHARE  );
+    }
+
+    private function getEventMessagePathWebdav()
+    {
+        return sprintf( "%s.%ss.%s", $this->getEventMessagePath(), self::WEBDAVSHARE, self::WEBDAVSHARE  );
     }
 
     public function applyConfig()
@@ -72,17 +91,17 @@ class OMVModuleRemoteShare extends OMVModuleServiceAbstract implements OMVINotif
     {
         $dispatcher->addListener(
             OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
-            sprintf("%s.nfsshares.nfsshare", $this->getEventMessagePath())
+            $this->getEventMessagePathNfs(),
             array($this, "setDirty")
         );
         $dispatcher->addListener(
             OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
-            sprintf("%s.smbshares.smbshare", $this->getEventMessagePath())
+            $this->getEventMessagePathSmb(),
             array($this, "setDirty")
         );
         $dispatcher->addListener(
             OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
-            sprintf("%s.webdavshares.webdavshare", $this->getEventMessagePath())
+            $this->getEventMessagePathWebdav(),
             array($this, "setDirty")
         );
         $dispatcher->addListener(
