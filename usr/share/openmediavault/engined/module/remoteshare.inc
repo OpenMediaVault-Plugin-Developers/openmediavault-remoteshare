@@ -15,54 +15,84 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 require_once("openmediavault/module.inc");
 require_once("openmediavault/config.inc");
 require_once("openmediavault/error.inc");
 require_once("openmediavault/util.inc");
 
-class OMVModuleRemoteShare extends OMVModuleServiceAbstract implements OMVINotifyListener {
-
-    public function getName() {
+class OMVModuleRemoteShare extends OMVModuleServiceAbstract implements OMVINotifyListener
+{
+    public function getName()
+    {
         return "remoteshare";
     }
 
-    public function applyConfig() {
-        global $xmlConfig;
-
-        $config = $xmlConfig->get("//services/remoteshare");
-
-        if (is_null($config))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, "//services/remoteshare");
-
-        $cmd = "omv-mkconf remoteshare 2>&1";
-
-        if (0 !== $this->exec($cmd, $output))
-            throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
+    private function getPluginName()
+    {
+        return strtolower( $this->getName() );
     }
 
-    public function bindListeners(OMVNotifyDispatcher $dispatcher) {
+    private function getXPath()
+    {
+        return sprintf( "//services/%s", $this->getPluginName() );
+    }
+
+    private function getEventMessagePath()
+    {
+        return sprintf( "org.openmediavault.services.%s", $this->getPluginName() );
+    }
+
+    public function applyConfig()
+    {
+        global $xmlConfig;
+
+        $config = $xmlConfig->get( $this->getXPath() );
+
+        if (is_null($config))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPath()
+            );
+        }
+
+        $cmd = "omv-mkconf " . $this->getPluginName() . " 2>&1";
+
+        if (0 !== $this->exec($cmd, $output))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_EXEC_FAILED,
+                $cmd,
+                implode("\n", $output)
+            );
+        }
+    }
+
+    public function bindListeners(OMVNotifyDispatcher $dispatcher)
+    {
         $dispatcher->addListener(
             OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
-            "org.openmediavault.services.remoteshare.nfsshares.nfsshare",
-            array($this, "setDirty"));
+            sprintf("%s.nfsshares.nfsshare", $this->getEventMessagePath())
+            array($this, "setDirty")
+        );
         $dispatcher->addListener(
             OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
-            "org.openmediavault.services.remoteshare.smbshares.smbshare",
-            array($this, "setDirty"));
+            sprintf("%s.smbshares.smbshare", $this->getEventMessagePath())
+            array($this, "setDirty")
+        );
         $dispatcher->addListener(
             OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
-            "org.openmediavault.services.remoteshare.webdavshares.webdavshare",
-            array($this, "setDirty"));
+            sprintf("%s.webdavshares.webdavshare", $this->getEventMessagePath())
+            array($this, "setDirty")
+        );
         $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
             "org.openmediavault.system.shares.sharedfolder",
-            array($this, "onSharedFolder"));
+            array($this, "onSharedFolder")
+        );
     }
 }
 
 // Register module
 $moduleMgr = &OMVModuleMgr::getInstance();
 $moduleMgr->registerModule(new OMVModuleRemoteShare());
-
-?>
