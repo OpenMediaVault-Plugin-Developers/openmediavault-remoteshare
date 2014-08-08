@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 10:40-0500\n"
-"PO-Revision-Date: 2014-05-27 23:32+0000\n"
-"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2014-07-01 08:52+0000\n"
+"Last-Translator: Paolo Velati <paolo.velati@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,21 +22,21 @@ msgid "Add share"
 msgstr "Aggiungi condivisione"
 
 msgid "Davfs2 settings"
-msgstr ""
+msgstr "Impostazioni Davfs2"
 
 msgid ""
 "Delay in seconds before a file will be uploaded to the server to avoid "
 "upload of temporary files."
-msgstr ""
+msgstr "Ritardo in secondi prima che un file venga caricato sul server, per evitare upload di file temporanei."
 
 msgid "Edit share"
 msgstr "Modifica condivisione"
 
 msgid "Enable"
-msgstr ""
+msgstr "Abilita"
 
 msgid "Enabled"
-msgstr ""
+msgstr "Abilitato"
 
 msgid "Export"
 msgstr "Esporta"
@@ -82,7 +82,7 @@ msgstr "NFSv4"
 msgid ""
 "Optimize fetching file infos for all files in a directory vs. just for the "
 "file to be opened."
-msgstr ""
+msgstr "Ottimizza il recupero di informazioni di file per tutti i file in una directory vs solo per il file da aprire."
 
 msgid "Password"
 msgstr "Password"
@@ -110,18 +110,18 @@ msgid "Shared Folder"
 msgstr "Cartella Condivisa"
 
 msgid "The amount of disk space in MiByte that may be used."
-msgstr ""
+msgstr "La quantità di spazio su disco in MiByte che possono essere utilizzati."
 
 msgid ""
 "The number of entries in the hash table for each known file. The value "
 "should be a power of 2."
-msgstr ""
+msgstr "Numero di voci nella tabella hash per ogni file conosciuto. Il valore deve essere una potenza di 2."
 
 msgid ""
 "These settings directly influence how the WebDAV resource is mounted as a "
 "local filesystem. Please only change the defaults if you know what you are "
 "doing."
-msgstr ""
+msgstr "Queste impostazioni influenzano direttamente come la risorsa WebDAV viene montata come un file system locale. Si prega di modificare solo le impostazioni predefinite se si sa cosa si sta facendo."
 
 msgid "This share is already in use by another remote NFS share."
 msgstr "Questa condivisione è già in uso da un altra condivisione NFS remota."
@@ -130,51 +130,51 @@ msgid "This share is already in use by another remote Samba share."
 msgstr "Questa condivisione è già in uso da un altra condivisione Samba remota."
 
 msgid "This share is already in use by another remote WebDAV share."
-msgstr ""
+msgstr "Questa condivisione è già in uso da un altra condivisione WebDAV remota."
 
 msgid "URL of the WebDAV resource."
-msgstr ""
+msgstr "URL della risorsa WebDAV."
 
 msgid "Use File"
 msgstr "Usa File"
 
 msgid "Use HEAD instead of If-Match and If-None-Match-headers."
-msgstr ""
+msgstr "Usa HEAD al posto di If-Match e If-None-Match-headers."
 
 msgid "Username"
 msgstr "Nome utente"
 
 msgid "WebDAV"
-msgstr ""
+msgstr "WebDAV"
 
 msgid "WebDAV URL"
-msgstr ""
+msgstr "URL WebDAV"
 
 msgid ""
 "WebDAV resource will be mounted as this shared folder for use in other "
 "plugins."
-msgstr ""
+msgstr "La condivisione WebDAV sarà montata come questa cartella condivisa per utilizzarla in altri plugin."
 
 msgid "Whether to lock files on the server when they are opened for writing."
-msgstr ""
+msgstr "Anche per bloccare i file sul server quando vengono aperti per la scrittura."
 
 msgid "cache_size"
-msgstr ""
+msgstr "cache_size"
 
 msgid "delay_upload"
-msgstr ""
+msgstr "delay_upload"
 
 msgid "gui_optimize"
-msgstr ""
+msgstr "gui_optimize"
 
 msgid "if_match_bug"
-msgstr ""
+msgstr "if_match_bug"
 
 msgid "n/a"
 msgstr "n/d"
 
 msgid "table_size"
-msgstr ""
+msgstr "table_size"
 
 msgid "use_locks"
-msgstr ""
+msgstr "use_locks"

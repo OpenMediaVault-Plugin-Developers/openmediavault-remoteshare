@@ -1,9 +1,10 @@
-openmediavault-remoteshare (1.0) UNRELEASED; urgency=low
+openmediavault-remoteshare (1.0) stable; urgency=low
 
   * Code formatting
+  * add _netdev to smb and nfs shares
   * Update locales
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 08 Aug 2014 10:23:35 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 08 Aug 2014 13:07:00 -0500
 
 openmediavault-remoteshare (0.6.4) stable; urgency=low
 

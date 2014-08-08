@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# dezi121 <by@songming.me>, 2014
+# songming <by@songming.me>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 10:40-0500\n"
-"PO-Revision-Date: 2014-05-27 23:32+0000\n"
-"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2014-05-29 10:03+0000\n"
+"Last-Translator: songming <by@songming.me>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,21 +22,21 @@ msgid "Add share"
 msgstr "添加共享"
 
 msgid "Davfs2 settings"
-msgstr ""
+msgstr "Davfs2设置"
 
 msgid ""
 "Delay in seconds before a file will be uploaded to the server to avoid "
 "upload of temporary files."
-msgstr ""
+msgstr "在上传文件到服务器前延迟多少秒，以避免上传临时文件。"
 
 msgid "Edit share"
 msgstr "编辑共享"
 
 msgid "Enable"
-msgstr ""
+msgstr "启用"
 
 msgid "Enabled"
-msgstr ""
+msgstr "已启用"
 
 msgid "Export"
 msgstr "输出"
@@ -91,7 +91,7 @@ msgid "Path to the exported directory."
 msgstr "输出路径目录。"
 
 msgid "Remote Shares"
-msgstr ""
+msgstr "Remote Shares"
 
 msgid "Samba"
 msgstr "Samba"
@@ -110,7 +110,7 @@ msgid "Shared Folder"
 msgstr "共享文件夹"
 
 msgid "The amount of disk space in MiByte that may be used."
-msgstr ""
+msgstr "挂载磁盘上的缓存空间多少MB。"
 
 msgid ""
 "The number of entries in the hash table for each known file. The value "
@@ -121,7 +121,7 @@ msgid ""
 "These settings directly influence how the WebDAV resource is mounted as a "
 "local filesystem. Please only change the defaults if you know what you are "
 "doing."
-msgstr ""
+msgstr "这些设置直接影响怎样将WebDAV资源挂载到本地文件系统，如果你不了解这些设置请使用默认值。"
 
 msgid "This share is already in use by another remote NFS share."
 msgstr "该共享已经被其它远程NFS共享使用了。"
@@ -130,10 +130,10 @@ msgid "This share is already in use by another remote Samba share."
 msgstr "该共享已经被其它远程Samba共享使用了。"
 
 msgid "This share is already in use by another remote WebDAV share."
-msgstr ""
+msgstr "该共享文件夹已经被其它远程WebDAV使用。"
 
 msgid "URL of the WebDAV resource."
-msgstr ""
+msgstr "WebDAV资源地址。"
 
 msgid "Use File"
 msgstr "使用文件"
@@ -145,30 +145,30 @@ msgid "Username"
 msgstr "用户名"
 
 msgid "WebDAV"
-msgstr ""
+msgstr "WebDAV"
 
 msgid "WebDAV URL"
-msgstr ""
+msgstr "WebDAV URL"
 
 msgid ""
 "WebDAV resource will be mounted as this shared folder for use in other "
 "plugins."
-msgstr ""
+msgstr "WebDAV资源将挂载到该文件夹以供其它插件使用。"
 
 msgid "Whether to lock files on the server when they are opened for writing."
-msgstr ""
+msgstr "当服务器上的文件以写模式打开时锁定文件。"
 
 msgid "cache_size"
-msgstr ""
+msgstr "缓存大小"
 
 msgid "delay_upload"
-msgstr ""
+msgstr "延迟上传"
 
 msgid "gui_optimize"
-msgstr ""
+msgstr "gui优化"
 
 msgid "if_match_bug"
-msgstr ""
+msgstr "如果匹配错误"
 
 msgid "n/a"
 msgstr "n/a"
@@ -177,4 +177,4 @@ msgid "table_size"
 msgstr ""
 
 msgid "use_locks"
-msgstr ""
+msgstr "使用锁定"

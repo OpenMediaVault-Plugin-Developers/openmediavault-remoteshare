@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Toshihiro Kan <kansuke4649@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 10:40-0500\n"
-"PO-Revision-Date: 2014-05-27 23:32+0000\n"
-"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2014-06-02 02:59+0000\n"
+"Last-Translator: Toshihiro Kan <kansuke4649@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,21 +22,21 @@ msgid "Add share"
 msgstr "共有の追加"
 
 msgid "Davfs2 settings"
-msgstr ""
+msgstr "Davfs2設定"
 
 msgid ""
 "Delay in seconds before a file will be uploaded to the server to avoid "
 "upload of temporary files."
-msgstr ""
+msgstr "一時ファイルのアップロードを避けるためにファイルがサーバにアップロードされる前に数秒遅延されます。"
 
 msgid "Edit share"
 msgstr "共有の編集"
 
 msgid "Enable"
-msgstr ""
+msgstr "有効"
 
 msgid "Enabled"
-msgstr ""
+msgstr "有効化済"
 
 msgid "Export"
 msgstr "エクスポート"
@@ -81,7 +82,7 @@ msgstr "NFSv4"
 msgid ""
 "Optimize fetching file infos for all files in a directory vs. just for the "
 "file to be opened."
-msgstr ""
+msgstr "ディレクトリ内のすべてのファイルあるいはちょうど開かれるファイルのためにファイル情報の取得を最適化します。"
 
 msgid "Password"
 msgstr "パスワード"
@@ -109,18 +110,18 @@ msgid "Shared Folder"
 msgstr "共有フォルダ"
 
 msgid "The amount of disk space in MiByte that may be used."
-msgstr ""
+msgstr "MiByte単位で使用できるディスクスペースの量。"
 
 msgid ""
 "The number of entries in the hash table for each known file. The value "
 "should be a power of 2."
-msgstr ""
+msgstr "既知の各ファイルについてのハッシュテーブル内のエントリの数。値は2のべき乗でなければなりません。"
 
 msgid ""
 "These settings directly influence how the WebDAV resource is mounted as a "
 "local filesystem. Please only change the defaults if you know what you are "
 "doing."
-msgstr ""
+msgstr "これらの設定は、直接WebDAVリソースがローカルファイルシステムとしてマウントされている方法に影響を与えます。\nこの設定を理解できるいる場合のみ、デフォルトを変更してください。"
 
 msgid "This share is already in use by another remote NFS share."
 msgstr "この共有は、別のリモートNFS共有で既に使用されています。"
@@ -129,51 +130,51 @@ msgid "This share is already in use by another remote Samba share."
 msgstr "この共有は、別のリモートSamba共有で既に使用されています。"
 
 msgid "This share is already in use by another remote WebDAV share."
-msgstr ""
+msgstr "この共有は、別のリモートWebDAV共有によってすでに使用されています。"
 
 msgid "URL of the WebDAV resource."
-msgstr ""
+msgstr "WebDAVリソースのURL。"
 
 msgid "Use File"
 msgstr "ファイルを使用する"
 
 msgid "Use HEAD instead of If-Match and If-None-Match-headers."
-msgstr ""
+msgstr "If-MatchとIf-None-Match-headersの代わりにHEADを使用してください。"
 
 msgid "Username"
 msgstr "ユーザー名"
 
 msgid "WebDAV"
-msgstr ""
+msgstr "WebDAV"
 
 msgid "WebDAV URL"
-msgstr ""
+msgstr "WebDAV URL"
 
 msgid ""
 "WebDAV resource will be mounted as this shared folder for use in other "
 "plugins."
-msgstr ""
+msgstr "WebDAVのリソースは、他のプラグインで使用するため、この共有フォルダとしてマウントされます。"
 
 msgid "Whether to lock files on the server when they are opened for writing."
-msgstr ""
+msgstr "書き込みのために開かれているサーバー上のファイルをロックするかどうか。"
 
 msgid "cache_size"
-msgstr ""
+msgstr "cache_size"
 
 msgid "delay_upload"
-msgstr ""
+msgstr "delay_upload"
 
 msgid "gui_optimize"
-msgstr ""
+msgstr "gui_optimize"
 
 msgid "if_match_bug"
-msgstr ""
+msgstr "if_match_bug"
 
 msgid "n/a"
 msgstr "n/a"
 
 msgid "table_size"
-msgstr ""
+msgstr "table_size"
 
 msgid "use_locks"
-msgstr ""
+msgstr "use_locks"

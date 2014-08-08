@@ -263,10 +263,16 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
             $nfs = "nfs";
 
         if (!empty($object['extraoptions']))
+        {
             $extraOptions = $object['extraoptions'];
+        }
         else
+        {
             $extraOptions = "intr";
-
+            
+        }
+        $extrasOptions = "_netdev," . $extraOptions;
+        
         $sfPath = OMVRpc::exec("ShareMgmt", "getPath", array("uuid" => $params['sharedfolderref']), $context);
 
         // <server>:</remote/export></local/directory><nfs-type><options> 0 0
@@ -534,7 +540,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                 $credentials = "username=".$object['username'].",password=".$object['password'].",sec=ntlm";
             }
         }
-        $object['fstab_line'] = "//".$object['server']."/".$object['smbname']." ".$sfPath." cifs ".$credentials.",iocharset=utf8 0 0";
+        $object['fstab_line'] = "//".$object['server']."/".$object['smbname']." ".$sfPath." cifs ".$credentials.",_netdev,iocharset=utf8 0 0";
 
         // Set the configuration object.
         $success = FALSE;
