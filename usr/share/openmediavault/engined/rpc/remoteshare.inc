@@ -190,8 +190,8 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
             );
         }
         // Modify the result object.
-        $object['enable'] = boolvalEx($object['enable']);
-        $object['nfs'] = boolvalEx($object['nfs']);
+        $object['enable'] = boolval($object['enable']);
+        $object['nfs'] = boolval($object['nfs']);
 
         return $object;
     }
@@ -442,9 +442,9 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
             );
         }
         // Modify the result object.
-        $object['enable']  = boolvalEx($object['enable']);
-        $object['guest']   = boolvalEx($object['guest']);
-        $object['usefile'] = boolvalEx($object['usefile']);
+        $object['enable']  = boolval($object['enable']);
+        $object['guest']   = boolval($object['guest']);
+        $object['usefile'] = boolval($object['usefile']);
 
         return $object;
     }
@@ -723,7 +723,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         }
 
         // Modify the result object.
-        $object['enable'] = boolvalEx($object['enable']);
+        $object['enable'] = boolval($object['enable']);
 
         preg_match_all("/([^::]+)::([^;]+)/", $object['davfs_opts'], $davfs_opts);
         $davfs_opts = array_combine($davfs_opts[1], $davfs_opts[2]);

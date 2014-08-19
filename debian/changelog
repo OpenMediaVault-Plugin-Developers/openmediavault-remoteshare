@@ -1,3 +1,9 @@
+openmediavault-remoteshare (1.0.1) stable; urgency=low
+
+  * Change dependency
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 08 Aug 2014 14:38:47 -0500
+
 openmediavault-remoteshare (1.0) stable; urgency=low
 
   * Code formatting
