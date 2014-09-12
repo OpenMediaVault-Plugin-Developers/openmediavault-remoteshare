@@ -712,7 +712,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         }');
 
         // Get the configuration object.
-        $xPath = sprintf("%s[uuid='%s']", $getXPathWebdavShare(), $params['uuid']);
+        $xPath = sprintf("%s[uuid='%s']", $this->getXPathWebdavShare(), $params['uuid']);
         $object = $xmlConfig->get($xPath);
         if (is_null($object))
         {
