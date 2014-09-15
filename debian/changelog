@@ -1,3 +1,9 @@
+openmediavault-remoteshare (1.0.3) stable; urgency=low
+
+  * Fix bug
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 15 Sep 2014 05:47:27 -0500
+
 openmediavault-remoteshare (1.0.2) stable; urgency=low
 
   * Minor tweaks
