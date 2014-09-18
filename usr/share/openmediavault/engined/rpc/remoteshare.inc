@@ -217,31 +217,50 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         }');
 
         // Look for duplicates
-        if(!empty($params["sharedfolderref"]) && $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'])
+        if(!empty($params["sharedfolderref"]))
         {
-            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathNfsShare(), $params['sharedfolderref']);
-            if (TRUE === $xmlConfig->exists($xPath))
+            // determine if it is the same shared folder as was in use before (when settings are updated)
+            $sameshare = FALSE;
+            if($params['uuid'] != $GLOBALS['OMV_UUID_UNDEFINED'])
             {
-                throw new OMVException(
-                    OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                    gettext("This share is already in use by another remote NFS share.")
-                );
+                $xPath = sprintf("%s[uuid='%s']", $this->getXPathNfsShare(), $params['uuid']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    $object = $xmlConfig->get($xPath);
+                    if ($params["sharedfolderref"] === $object["sharedfolderref"])
+                    {
+                        $sameshare = TRUE;
+                    }
+                }
             }
-            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathSmbShare(), $params['sharedfolderref']);
-            if (TRUE === $xmlConfig->exists($xPath))
+
+            // we don't need to check if the shared folder was in use before
+            if (FALSE === $sameshare)
             {
-                throw new OMVException(
-                    OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                    gettext("This share is already in use by another remote Samba share.")
-                );
-            }
-            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathWebdavShare(), $params['sharedfolderref']);
-            if (TRUE === $xmlConfig->exists($xPath))
-            {
-                throw new OMVException(
-                    OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                    gettext("This share is already in use by another remote WebDAV share.")
-                );
+                $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathNfsShare(), $params['sharedfolderref']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    throw new OMVException(
+                        OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                        gettext("This share is already in use by another remote NFS share.")
+                    );
+                }
+                $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathSmbShare(), $params['sharedfolderref']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    throw new OMVException(
+                        OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                        gettext("This share is already in use by another remote Samba share.")
+                    );
+                }
+                $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathWebdavShare(), $params['sharedfolderref']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    throw new OMVException(
+                        OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                        gettext("This share is already in use by another remote WebDAV share.")
+                    );
+                }
             }
         }
 
@@ -289,8 +308,8 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         else
         {
             // Update the existing configuration object.
-            $xPath = sprintf("%s[uuid='%s']", $this->getXPathNfsShare(), $object);
-            $success = $xmlConfig->replace($xPath);
+            $xPath = sprintf("%s[uuid='%s']", $this->getXPathNfsShare(), $params['uuid']);
+            $success = $xmlConfig->replace($xPath, $object);
         }
         if(FALSE === $success)
         {
@@ -476,31 +495,50 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         }');
 
         // Look for duplicates
-        if (!empty($params["sharedfolderref"]) && $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'])
+        if(!empty($params["sharedfolderref"]))
         {
-            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathNfsShare(), $params['sharedfolderref']);
-            if (TRUE === $xmlConfig->exists($xPath))
+            // determine if it is the same shared folder as was in use before (when settings are updated)
+            $sameshare = FALSE;
+            if($params['uuid'] != $GLOBALS['OMV_UUID_UNDEFINED'])
             {
-                throw new OMVException(
-                    OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                    gettext("This share is already in use by another remote NFS share.")
-                );
+                $xPath = sprintf("%s[uuid='%s']", $this->getXPathSmbShare(), $params['uuid']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    $object = $xmlConfig->get($xPath);
+                    if ($params["sharedfolderref"] === $object["sharedfolderref"])
+                    {
+                        $sameshare = TRUE;
+                    }
+                }
             }
-            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathSmbShare(), $params['sharedfolderref']);
-            if (TRUE === $xmlConfig->exists($xPath))
+
+            // we don't need to check if the shared folder was in use before
+            if (FALSE === $sameshare)
             {
-                throw new OMVException(
-                    OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                    gettext("This share is already in use by another remote Samba share.")
-                );
-            }
-            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathWebdavShare(), $params['sharedfolderref']);
-            if (TRUE === $xmlConfig->exists($xPath))
-            {
-                throw new OMVException(
-                    OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                    gettext("This share is already in use by another remote WebDAV share.")
-                );
+                $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathNfsShare(), $params['sharedfolderref']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    throw new OMVException(
+                        OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                        gettext("This share is already in use by another remote NFS share.")
+                    );
+                }
+                $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathSmbShare(), $params['sharedfolderref']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    throw new OMVException(
+                        OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                        gettext("This share is already in use by another remote Samba share.")
+                    );
+                }
+                $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathWebdavShare(), $params['sharedfolderref']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    throw new OMVException(
+                        OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                        gettext("This share is already in use by another remote WebDAV share.")
+                    );
+                }
             }
         }
 
@@ -552,8 +590,8 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         else
         {
             // Update the existing configuration object.
-            $xPath = sprintf("%s[uuid='%s']", $this->getXPathSmbShares(), $object);
-            $success = $xmlConfig->replace($xPath);
+            $xPath = sprintf("%s[uuid='%s']", $this->getXPathSmbShare(), $params['uuid']);
+            $success = $xmlConfig->replace($xPath, $object);
         }
         if (FALSE === $success)
         {
@@ -767,31 +805,50 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         }');
 
         // Look for duplicates
-        if (!empty($params["sharedfolderref"]) && $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'])
+        if(!empty($params["sharedfolderref"]))
         {
-            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathNfsShare(), $params['sharedfolderref']);
-            if (TRUE === $xmlConfig->exists($xPath))
+            // determine if it is the same shared folder as was in use before (when settings are updated)
+            $sameshare = FALSE;
+            if($params['uuid'] != $GLOBALS['OMV_UUID_UNDEFINED'])
             {
-                throw new OMVException(
-                    OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                    gettext("This share is already in use by another remote NFS share.")
-                );
+                $xPath = sprintf("%s[uuid='%s']", $this->getXPathWebdavShare(), $params['uuid']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    $object = $xmlConfig->get($xPath);
+                    if ($params["sharedfolderref"] === $object["sharedfolderref"])
+                    {
+                        $sameshare = TRUE;
+                    }
+                }
             }
-            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathSmbShare(), $params['sharedfolderref']);
-            if (TRUE === $xmlConfig->exists($xPath))
+
+            // we don't need to check if the shared folder was in use before
+            if (FALSE === $sameshare)
             {
-                throw new OMVException(
-                    OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                    gettext("This share is already in use by another remote Samba share.")
-                );
-            }
-            $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathWebdavShare(), $params['sharedfolderref']);
-            if (TRUE === $xmlConfig->exists($xPath))
-            {
-                throw new OMVException(
-                    OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                    gettext("This share is already in use by another remote WebDAV share.")
-                );
+                $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathNfsShare(), $params['sharedfolderref']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    throw new OMVException(
+                        OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                        gettext("This share is already in use by another remote NFS share.")
+                    );
+                }
+                $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathSmbShare(), $params['sharedfolderref']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    throw new OMVException(
+                        OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                        gettext("This share is already in use by another remote Samba share.")
+                    );
+                }
+                $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathWebdavShare(), $params['sharedfolderref']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    throw new OMVException(
+                        OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                        gettext("This share is already in use by another remote WebDAV share.")
+                    );
+                }
             }
         }
 
@@ -836,8 +893,8 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
             $success = $xmlConfig->set($this->getXPathWebdavShares(), array("webdavshare" => $object));
         } else {
             // Update the existing configuration object.
-            $xPath = sprintf("%s[uuid='%s']", $this->getXPathWebdavShares(), $object);
-            $success = $xmlConfig->replace($xPath);
+            $xPath = sprintf("%s[uuid='%s']", $this->getXPathWebdavShare(), $params['uuid']);
+            $success = $xmlConfig->replace($xPath, $object);
         }
         if (FALSE === $success)
         {
