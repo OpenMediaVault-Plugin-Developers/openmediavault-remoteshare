@@ -60,3 +60,14 @@ while [ ${index} -le ${count} ]; do
     fi
     index=$(( ${index} + 1 ))
 done;
+
+# remote glusterfs share entries
+index=0;
+while [ ${index} -le ${count} ]; do
+    enable=$(omv_config_get "//services/remoteshare/glustershares/glustershare[position()=${index}]/enable")
+    entry=$(omv_config_get "//services/remoteshare/glustershares/glustershare[position()=${index}]/fstab_line")
+    if [ "${enable}" != "0" -a "${entry}" != "" ]; then
+        echo ${entry}
+    fi
+    index=$(( ${index} + 1 ))
+done;

@@ -25,6 +25,7 @@ class OMVModuleRemoteShare extends OMVModuleServiceAbstract implements OMVINotif
     const NFSSHARE = 'nfsshare';
     const SMBSHARE = 'smbshare';
     const WEBDAVSHARE = 'webdavshare';
+    const GLUSTERSHARE = 'glustershare';
 
     public function getName()
     {
@@ -59,6 +60,11 @@ class OMVModuleRemoteShare extends OMVModuleServiceAbstract implements OMVINotif
     private function getEventMessagePathWebdav()
     {
         return sprintf( "%s.%ss.%s", $this->getEventMessagePath(), self::WEBDAVSHARE, self::WEBDAVSHARE  );
+    }
+
+    private function getEventMessagePathGluster()
+    {
+        return sprintf( "%s.%ss.%s", $this->getEventMessagePath(), self::GLUSTERSHARE, self::GLUSTERSHARE  );
     }
 
     public function applyConfig()
@@ -102,6 +108,11 @@ class OMVModuleRemoteShare extends OMVModuleServiceAbstract implements OMVINotif
         $dispatcher->addListener(
             OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
             $this->getEventMessagePathWebdav(),
+            array($this, "setDirty")
+        );
+        $dispatcher->addListener(
+            OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
+            $this->getEventMessagePathGluster(),
             array($this, "setDirty")
         );
         $dispatcher->addListener(

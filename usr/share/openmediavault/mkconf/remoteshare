@@ -80,6 +80,29 @@ while [ ${index} -le ${count} ]; do
 done;
 
 
+count=$(omv_config_get_count "//services/remoteshare/glustershares/glustershare");
+
+# remote glusterfs share entries
+index=1;
+while [ ${index} -le ${count} ]; do
+    enable=$(omv_config_get "//services/remoteshare/glustershares/glustershare[position()=${index}]/enable")
+    sfref=$(omv_config_get "//services/remoteshare/glustershares/glustershare[position()=${index}]/sharedfolderref")
+    server=$(omv_config_get "//services/remoteshare/glustershares/glustershare[position()=${index}]/server")
+    volname=$(omv_config_get "//services/remoteshare/glustershares/glustershare[position()=${index}]/volname")
+    sfpath=$(omv_get_sharedfolder_path "${sfref}")
+    sfpath=${sfpath%/} #strip off trailing slash, if any
+
+    if [ ${enable} -eq 0 ]; then
+        if mount | grep -q -E "^${server}:/${volname} on ${sfpath}"; then
+            # entry is not enabled but currently mounted, so unmount it
+            umount ${sfpath} >/dev/null 2>&1
+        fi
+    fi
+
+    index=$(( ${index} + 1 ))
+done;
+
+
 # add credentials to davfs2 secrets file
 secent=$(
     count=$(omv_config_get_count "//services/remoteshare/webdavshares/webdavshare");

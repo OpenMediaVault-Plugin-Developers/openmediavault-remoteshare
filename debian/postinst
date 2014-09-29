@@ -5,33 +5,44 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
+SERVICE_XPATH_NAME="remoteshare"
+SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
+
 case "$1" in
-configure)
+    configure)
 
-    if ! omv_config_exists "/config/services/remoteshare"; then
-        echo "Initial configuration."
-        object="<nfsshares></nfsshares>"
-        object="${object}<smbshares></smbshares>"
-        object="${object}<webdavshares></webdavshares>"
-        omv_config_add_element "/config/services" "remoteshare" "${object}" true
-    elif ! omv_config_exists "/config/services/remoteshare/webdavshares"; then
-        # webdavshares were added in a later version of the plugin so need to be added if they don't exist
-        omv_config_add_element "/config/services/remoteshare" "webdavshares" "" false
-    fi
+        if ! omv_config_exists "${SERVICE_XPATH}"; then
+            echo "Initial configuration."
+            omv_config_add_element "/config/services" "${SERVICE_XPATH_NAME}"
+        fi
 
-    dpkg-trigger update-fixperms
-    dpkg-trigger update-locale
+        if ! omv_config_exists "${SERVICE_XPATH}/nfsshares"; then
+            omv_config_add_element "${SERVICE_XPATH}" "nfsshares" ""
+        fi
 
+        if ! omv_config_exists "${SERVICE_XPATH}/smbshares"; then
+            omv_config_add_element "${SERVICE_XPATH}" "smbshares" ""
+        fi
+
+        if ! omv_config_exists "${SERVICE_XPATH}/webdavshares"; then
+            omv_config_add_element "${SERVICE_XPATH}" "webdavshares" ""
+        fi
+
+        if ! omv_config_exists "${SERVICE_XPATH}/glustershares"; then
+            omv_config_add_element "${SERVICE_XPATH}" "glustershares" ""
+        fi
+
+        dpkg-trigger update-fixperms
+        dpkg-trigger update-locale
     ;;
 
-abort-upgrade|abort-remove|abort-deconfigure)
+    abort-upgrade|abort-remove|abort-deconfigure)
     ;;
 
-*)
-    echo "postinst called with unknown argument" >&2
-    exit 1
+    *)
+        echo "postinst called with unknown argument" >&2
+        exit 1
     ;;
-
 esac
 
 exit 0

@@ -31,6 +31,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
     const NFSSHARE = 'nfsshare';
     const SMBSHARE = 'smbshare';
     const WEBDAVSHARE = 'webdavshare';
+    const GLUSTERSHARE = 'glustershare';
 
     public function getName()
     {
@@ -77,6 +78,16 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         return sprintf( "%s/%s", $this->getXPathWebdavShares(), self::WEBDAVSHARE );
     }
 
+    private function getXPathGlusterShares()
+    {
+        return sprintf( "%s/%ss", $this->getXPath(), self::GLUSTERSHARE );
+    }
+
+    private function getXPathGlusterShare()
+    {
+        return sprintf( "%s/%s", $this->getXPathGlusterShares(), self::GLUSTERSHARE );
+    }
+
     private function getEventMessagePath()
     {
         return sprintf( "org.openmediavault.services.%s", $this->getPluginName() );
@@ -97,20 +108,32 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         return sprintf( "%s.%ss.%s", $this->getEventMessagePath(), self::WEBDAVSHARE, self::WEBDAVSHARE  );
     }
 
+    private function getEventMessagePathGluster()
+    {
+        return sprintf( "%s.%ss.%s", $this->getEventMessagePath(), self::GLUSTERSHARE, self::GLUSTERSHARE  );
+    }
+
     public function initialize()
     {
         $this->registerMethod("getNfsShareList");
         $this->registerMethod("getNfsShare");
         $this->registerMethod("setNfsShare");
         $this->registerMethod("deleteNfsShare");
+
         $this->registerMethod("getSmbShareList");
         $this->registerMethod("getSmbShare");
         $this->registerMethod("setSmbShare");
         $this->registerMethod("deleteSmbShare");
+
         $this->registerMethod("getWebdavShareList");
         $this->registerMethod("getWebdavShare");
         $this->registerMethod("setWebdavShare");
         $this->registerMethod("deleteWebdavShare");
+
+        $this->registerMethod("getGlusterShareList");
+        $this->registerMethod("getGlusterShare");
+        $this->registerMethod("setGlusterShare");
+        $this->registerMethod("deleteGlusterShare");
     }
 
     public function getNfsShareList($params, $context)
@@ -196,7 +219,8 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         return $object;
     }
 
-    public function setNfsShare($params, $context) {
+    public function setNfsShare($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
@@ -261,6 +285,14 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                         gettext("This share is already in use by another remote WebDAV share.")
                     );
                 }
+                $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathGlusterShare(), $params['sharedfolderref']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    throw new OMVException(
+                        OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                        gettext("This share is already in use by another remote GlusterFS share.")
+                    );
+                }
             }
         }
 
@@ -288,7 +320,6 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         else
         {
             $extraOptions = "intr";
-
         }
         $extrasOptions = "_netdev," . $extraOptions;
 
@@ -296,7 +327,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
 
         // <server>:</remote/export></local/directory><nfs-type><options> 0 0
         // server:/usr/local/pub /pub nfs rsize=8192,wsize=8192,timeo=14,intr
-        $object['fstab_line'] = $object['server'].":".$object['export']." ".$sfPath." ".$nfs." ".$extraOptions." 0 0";
+        $object['fstab_line'] = sprintf("%s:%s %s %s %s 0 0", $object['server'], $object['export'], $sfPath, $nfs, $extraOptions);
 
         // Set the configuration object.
         $success = FALSE;
@@ -383,7 +414,8 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         return $object;
     }
 
-    public function getSmbShareList($params, $context) {
+    public function getSmbShareList($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
@@ -539,6 +571,14 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                         gettext("This share is already in use by another remote WebDAV share.")
                     );
                 }
+                $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathGlusterShare(), $params['sharedfolderref']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    throw new OMVException(
+                        OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                        gettext("This share is already in use by another remote GlusterFS share.")
+                    );
+                }
             }
         }
 
@@ -578,7 +618,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                 $credentials = "username=".$object['username'].",password=".$object['password'].",sec=ntlm";
             }
         }
-        $object['fstab_line'] = "//".$object['server']."/".$object['smbname']." ".$sfPath." cifs ".$credentials.",_netdev,iocharset=utf8 0 0";
+        $object['fstab_line'] = sprintf("//%s/%s %s cifs %s,_netdev,iocharset=utf8 0 0", $object['server'], $object['smbname'], $sfPath, $credentials);
 
         // Set the configuration object.
         $success = FALSE;
@@ -849,6 +889,14 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                         gettext("This share is already in use by another remote WebDAV share.")
                     );
                 }
+                $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathGlusterShare(), $params['sharedfolderref']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    throw new OMVException(
+                        OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                        gettext("This share is already in use by another remote GlusterFS share.")
+                    );
+                }
             }
         }
 
@@ -883,7 +931,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
 
         // <resourceurl></local/directory><davfs><options> 0 0
         // https://server/path /pub davfs _netdev,user,rw,noauto  0  0
-        $object['fstab_line'] = $object['resource']." ".$sfPath." davfs ".$extraOptions." 0 0";
+        $object['fstab_line'] = sprintf("%s %s davfs %s 0 0", $object['resource'], $sfPath, $extraOptions);
 
         // Set the configuration object.
         $success = FALSE;
@@ -965,6 +1013,271 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
             ),
             $context
         );
+
+        // Return the deleted configuration object.
+        return $object;
+    }
+
+    public function getGlusterShareList($params, $context)
+    {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "start"     : { "type" : "integer" },
+                "limit"     : { '.$GLOBALS['OMV_JSONSCHEMA_COUNTFIELD'].' },
+                "sortfield" : { '.$GLOBALS['OMV_JSONSCHEMA_SORTFIELD'].' },
+                "sortdir"   : { '.$GLOBALS['OMV_JSONSCHEMA_SORTDIR'].' }
+            }
+        }');
+
+        // Get the configuration object.
+        $objects = $xmlConfig->getList( $this->getXPathGlusterShare() );
+        if (is_null($objects))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPathGlusterShare()
+            );
+        }
+
+        // Add additional share informations.
+        foreach($objects as $objectk => &$objectv) {
+            $objectv['sharename'] = gettext("n/a");
+            // Get the shared folder configuration object.
+            $sfObject = $xmlConfig->get("//system/shares/sharedfolder[uuid='{$objectv['sharedfolderref']}']");
+            if(!is_null($sfObject) && !empty($sfObject))
+                $objectv['sharename'] = $sfObject['name'];
+        }
+
+        // Filter the result.
+        return $this->applyFilter($objects, $params['start'], $params['limit'],
+            $params['sortfield'], $params['sortdir']);
+    }
+
+    public function getGlusterShare($params, $context)
+    {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "uuid" : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' }
+            }
+        }');
+
+        // Get the configuration object.
+        $xPath = sprintf("%s[uuid='%s']", $this->getXPathGlusterShare(), $params['uuid']);
+        $object = $xmlConfig->get($xPath);
+        if (is_null($object))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $xPath
+            );
+        }
+        // Modify the result object.
+        $object['enable']  = boolval($object['enable']);
+
+        return $object;
+    }
+
+    public function setGlusterShare($params, $context)
+    {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "uuid"            : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_UNDEFINED'].' },
+                "enable"          : { "type" : "boolean" },
+                "server"          : { "type" : "string" },
+                "volname"         : { "type" : "string" },
+                "sharedfolderref" : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' }
+            }
+        }');
+
+        // Look for duplicates
+        if(!empty($params["sharedfolderref"]))
+        {
+            // determine if it is the same shared folder as was in use before (when settings are updated)
+            $sameshare = FALSE;
+            if($params['uuid'] != $GLOBALS['OMV_UUID_UNDEFINED'])
+            {
+                $xPath = sprintf("%s[uuid='%s']", $this->getXPathGlusterShare(), $params['uuid']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    $object = $xmlConfig->get($xPath);
+                    if ($params["sharedfolderref"] === $object["sharedfolderref"])
+                    {
+                        $sameshare = TRUE;
+                    }
+                }
+            }
+
+            // we don't need to check if the shared folder was in use before
+            if (FALSE === $sameshare)
+            {
+                $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathNfsShare(), $params['sharedfolderref']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    throw new OMVException(
+                        OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                        gettext("This share is already in use by another remote NFS share.")
+                    );
+                }
+                $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathSmbShare(), $params['sharedfolderref']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    throw new OMVException(
+                        OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                        gettext("This share is already in use by another remote Samba share.")
+                    );
+                }
+                $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathWebdavShare(), $params['sharedfolderref']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    throw new OMVException(
+                        OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                        gettext("This share is already in use by another remote WebDAV share.")
+                    );
+                }
+                $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathGlusterShare(), $params['sharedfolderref']);
+                if (TRUE === $xmlConfig->exists($xPath))
+                {
+                    throw new OMVException(
+                        OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                        gettext("This share is already in use by another remote GlusterFS share.")
+                    );
+                }
+            }
+        }
+
+        // Prepare the configuration object.
+        $object = array(
+            "uuid"            => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
+            "enable"          => array_boolval($params, 'enable'),
+            "server"          => $params['server'],
+            "volname"         => $params['smbname'],
+            "sharedfolderref" => $params['sharedfolderref']
+        );
+
+        $sfPath = OMVRpc::exec("ShareMgmt", "getPath", array("uuid" => $params['sharedfolderref']), $context);
+
+        // HOSTNAME-OR-IPADDRESS:/VOLNAME MOUNTDIR glusterfs defaults,_netdev 0 0
+        $object['fstab_line'] = sprintf("%s:/%s %s glusterfs defaults,_netdev 0 0", $object['server'], $object['volname'], $sfPath);
+
+        // Set the configuration object.
+        $success = FALSE;
+        if ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'])
+        {
+            // Append the configuration object.
+            $success = $xmlConfig->set($this->getXPathGlusterShares(), array("glustershare" => $object));
+        }
+        else
+        {
+            // Update the existing configuration object.
+            $xPath = sprintf("%s[uuid='%s']", $this->getXPathGlusterShare(), $params['uuid']);
+            $success = $xmlConfig->replace($xPath, $object);
+        }
+        if (FALSE === $success)
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED
+            );
+        }
+
+        // Notify configuration changes.
+        $dispatcher = &OMVNotifyDispatcher::getInstance();
+        $dispatcher->notify(
+            ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMV_NOTIFY_CREATE : OMV_NOTIFY_MODIFY,
+            $this->getEventMessagePathGluster(),
+            $object
+        );
+
+        // Return the configuration object.
+        return $object;
+    }
+
+    public function deleteGlusterShare($params, $context)
+    {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "uuid" : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' }
+            }
+        }');
+
+        // Get the configuration object.
+        $xPath = sprintf("%s[uuid='%s']", $this->getXPathSmbShare(), $params['uuid']);
+        $object = $xmlConfig->get($xPath);
+        if (is_null($object))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $xPath
+            );
+        }
+        $sfPath = OMVRpc::exec("ShareMgmt", "getPath", array("uuid" => $object['sharedfolderref']), $context);
+
+        // unmount share
+        $cmd = sprintf("export LANG=C; umount %s", $sfPath);
+        $this->exec($cmd);
+
+        // Delete the configuration object.
+        $object = $this->deleteConfigObjectByPath(
+            $xPath,
+            $this->getEventMessagePathSmb()
+        );
+
+        // Apply the changes immediately (no user interaction is wanted).
+        OMVRpc::exec(
+            "Config",
+            "applyChanges",
+            array(
+                "modules" => array("remoteshare"),
+                "force" => TRUE
+            ),
+            $context
+        );
+
+        // delete credential file
+        $credfile = "/root/.smbcredentials-".$object['sharedfolderref'];
+        if (file_exists($credfile))
+        {
+            unlink($credfile);
+        }
 
         // Return the deleted configuration object.
         return $object;
