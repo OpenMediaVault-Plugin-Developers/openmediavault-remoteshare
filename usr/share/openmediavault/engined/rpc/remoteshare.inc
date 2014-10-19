@@ -618,7 +618,8 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                 $credentials = "username=".$object['username'].",password=".$object['password'].",sec=ntlm";
             }
         }
-        $object['fstab_line'] = sprintf("//%s/%s %s cifs %s,_netdev,iocharset=utf8 0 0", $object['server'], $object['smbname'], $sfPath, $credentials);
+        $smbname = str_replace(" ", "\\\\040", $object['smbname']);
+        $object['fstab_line'] = sprintf("//%s/%s %s cifs %s,_netdev,iocharset=utf8 0 0", $object['server'], $smbname, $sfPath, $credentials);
 
         // Set the configuration object.
         $success = FALSE;
