@@ -22,10 +22,12 @@ require_once("openmediavault/util.inc");
 
 class OMVModuleRemoteShare extends OMVModuleServiceAbstract implements OMVINotifyListener
 {
-    const NFSSHARE = 'nfsshare';
-    const SMBSHARE = 'smbshare';
-    const WEBDAVSHARE = 'webdavshare';
+    const NFSSHARE     = 'nfsshare';
+    const SMBSHARE     = 'smbshare';
+    const WEBDAVSHARE  = 'webdavshare';
     const GLUSTERSHARE = 'glustershare';
+    const SSHSHARE     = 'sshshare';
+    const FTPSHARE     = 'ftpshare';
 
     public function getName()
     {
@@ -66,6 +68,17 @@ class OMVModuleRemoteShare extends OMVModuleServiceAbstract implements OMVINotif
     {
         return sprintf( "%s.%ss.%s", $this->getEventMessagePath(), self::GLUSTERSHARE, self::GLUSTERSHARE  );
     }
+
+    private function getEventMessagePathSsh()
+    {
+        return sprintf( "%s.%ss.%s", $this->getEventMessagePath(), self::SSHSHARE, self::SSHSHARE  );
+    }
+
+    private function getEventMessagePathFtp()
+    {
+        return sprintf( "%s.%ss.%s", $this->getEventMessagePath(), self::FTPSHARE, self::FTPSHARE  );
+    }
+
 
     public function applyConfig()
     {
@@ -115,6 +128,16 @@ class OMVModuleRemoteShare extends OMVModuleServiceAbstract implements OMVINotif
             $this->getEventMessagePathGluster(),
             array($this, "setDirty")
         );
+        $dispatcher->addListener(
+            OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
+            $this->getEventMessagePathSsh(),
+            array($this, "setDirty")
+        );
+        $dispatcher->addListener(
+            OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
+            $this->getEventMessagePathFtp(),
+            array($this, "setDirty")
+        );        
         $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
             "org.openmediavault.system.shares.sharedfolder",

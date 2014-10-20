@@ -1287,7 +1287,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
             "uuid"            => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
             "enable"          => array_boolval($params, 'enable'),
             "server"          => $params['server'],
-            "volname"         => $params['smbname'],
+            "volname"         => $params['volname'],
             "sharedfolderref" => $params['sharedfolderref']
         );
 
@@ -1576,7 +1576,6 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         // .sshcredentials
         //   username=msusername
         //   password=mspassword
-        $credentials = sprintf("", );
         $sshname = str_replace(" ", "\\\\040", $object['sshname']);
         $object['fstab_line'] = sprintf(
             "sshfs#%s@%s:%s %s fuse credentials=/root/.sshcredentials-%s,_netdev 0 0",
