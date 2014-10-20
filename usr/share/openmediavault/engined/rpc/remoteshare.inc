@@ -1379,13 +1379,6 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
             $context
         );
 
-        // delete credential file
-        $credfile = "/root/.smbcredentials-".$object['sharedfolderref'];
-        if (file_exists($credfile))
-        {
-            unlink($credfile);
-        }
-
         // Return the deleted configuration object.
         return $object;
     }
