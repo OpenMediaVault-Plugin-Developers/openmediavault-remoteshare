@@ -81,17 +81,12 @@ Ext.define("OMV.module.admin.service.remoteshare.FtpShare", {
         },{
             xtype      : "textfield",
             name       : "server",
-            fieldLabel : _("Server"),
+            fieldLabel : _("Host"),
             allowBlank : false,
             plugins    : [{
                 ptype : "fieldinfo",
                 text  : _("Hostname, IP address, or fully qualified domain name of the server.")
             }]
-        },{
-            xtype      : "textfield",
-            name       : "ftpname",
-            fieldLabel : _("Share Name"),
-            allowBlank : false
         },{
             xtype      : "sharedfoldercombo",
             name       : "sharedfolderref",
@@ -146,7 +141,7 @@ Ext.define("OMV.module.admin.service.remoteshare.FtpShares", {
 
     hidePagingToolbar : false,
     stateful          : true,
-    stateId           : "1649057b-b1c0-1c48-a4c1-8c8d1fe52d7b",
+    stateId           : "1649057b-b1c0-1c48-a4c1-8c8d11e52d7b",
     columns           : [{
         xtype     : "booleaniconcolumn",
         text      : _("Enabled"),
@@ -163,11 +158,6 @@ Ext.define("OMV.module.admin.service.remoteshare.FtpShares", {
         sortable  : true,
         dataIndex : "server",
         stateId   : "server"
-    },{
-        text      : _("Share Name"),
-        sortable  : true,
-        dataIndex : "ftpname",
-        stateId   : "ftpname"
     },{
         text      : _("Shared Folder"),
         sortable  : true,
@@ -191,7 +181,6 @@ Ext.define("OMV.module.admin.service.remoteshare.FtpShares", {
                         { name : "uuid", type: "string" },
                         { name : "enable", type: "boolean" },
                         { name : "server", type: "string" },
-                        { name : "ftpname", type: "string" },
                         { name : "sharename", type: "string" },
                         { name : "mountas", type: "string" }
                     ]

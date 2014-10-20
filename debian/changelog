@@ -1,3 +1,11 @@
+openmediavault-remoteshare (1.0.6) UNRELEASED; urgency=low
+
+  * Add sshfs tab
+  * Add curlftpfs tab
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 20 Oct 2014 10:03:32 -0500
+
 openmediavault-remoteshare (1.0.5) stable; urgency=low
 
   * Fix github issue #3 - Spaces should be escaped in Samba share name

@@ -20,24 +20,33 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
+XPATH="//services/remoteshare/"
+XPATH_NFS="${XPATH}/nfsshares/nfsshare"
+XPATH_SMB="${XPATH}/smbshares/smbshare"
+XPATH_WEBDAV="${XPATH}/webdavshares/webdavshare"
+XPATH_GLUSTER="${XPATH}/glustershares/glustershare"
+XPATH_SSH="${XPATH}/sshshares/sshshare"
+XPATH_FTP="${XPATH}/ftpshares/ftpshare"
+
+POSITION="[position()="
+
 SMB_CRED_FILE="/root/.smbcredentials-"
 SSH_CRED_FILE="/root/.sshcredentials-"
-FTP_CRED_FILE="/root/.ftpcredentials-"
+FTP_CRED_FILE="/root/.netrc"
 
 OMV_REMOTESHARE_SECTION=${OMV_REMOTESHARE_SECTION:-"omv-remoteshare"}
 OMV_DAVFS2_CONFIG=${OMV_DAVFS2_CONFIG:-"/etc/davfs2/davfs2.conf"}
 OMV_DAVFS2_SECRETS=${OMV_DAVFS2_SECRETS:-"/etc/davfs2/secrets"}
 
 
-count=$(omv_config_get_count "//services/remoteshare/nfsshares/nfsshare");
-
 # remote nfs share entries
+count=$(omv_config_get_count "${XPATH_NFS}");
 index=1;
 while [ ${index} -le ${count} ]; do
-    enable=$(omv_config_get "//services/remoteshare/nfsshares/nfsshare[position()=${index}]/enable")
-    server=$(omv_config_get "//services/remoteshare/nfsshares/nfsshare[position()=${index}]/server")
-    export=$(omv_config_get "//services/remoteshare/nfsshares/nfsshare[position()=${index}]/export")
-    sfref=$(omv_config_get "//services/remoteshare/nfsshares/nfsshare[position()=${index}]/sharedfolderref")
+    enable=$(omv_config_get "${XPATH_NFS}${POSITION}${index}]/enable")
+    server=$(omv_config_get "${XPATH_NFS}${POSITION}${index}]/server")
+    export=$(omv_config_get "${XPATH_NFS}${POSITION}${index}]/export")
+    sfref=$(omv_config_get "${XPATH_NFS}${POSITION}${index}]/sharedfolderref")
     sfpath=$(omv_get_sharedfolder_path "${sfref}")
     sfpath=${sfpath%/} #strip off trailing slash, if any
 
@@ -52,18 +61,17 @@ while [ ${index} -le ${count} ]; do
 done;
 
 
-count=$(omv_config_get_count "//services/remoteshare/smbshares/smbshare");
-
 # remote samba share entries
+count=$(omv_config_get_count "${XPATH_SMB}");
 index=1;
 while [ ${index} -le ${count} ]; do
-    enable=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/enable")
-    credfile=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/usefile")
-    sfref=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/sharedfolderref")
-    username=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/username")
-    password=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/password")
-    server=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/server")
-    smbname=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/smbname")
+    enable=$(omv_config_get "${XPATH_SMB}${POSITION}${index}]/enable")
+    credfile=$(omv_config_get "${XPATH_SMB}${POSITION}${index}]/usefile")
+    sfref=$(omv_config_get "${XPATH_SMB}${POSITION}${index}]/sharedfolderref")
+    username=$(omv_config_get "${XPATH_SMB}${POSITION}${index}]/username")
+    password=$(omv_config_get "${XPATH_SMB}${POSITION}${index}]/password")
+    server=$(omv_config_get "${XPATH_SMB}${POSITION}${index}]/server")
+    smbname=$(omv_config_get "${XPATH_SMB}${POSITION}${index}]/smbname")
     sfpath=$(omv_get_sharedfolder_path "${sfref}")
     sfpath=${sfpath%/} #strip off trailing slash, if any
 
@@ -83,15 +91,14 @@ while [ ${index} -le ${count} ]; do
 done;
 
 
-count=$(omv_config_get_count "//services/remoteshare/glustershares/glustershare");
-
 # remote glusterfs share entries
+count=$(omv_config_get_count "${XPATH_GLUSTER}");
 index=1;
 while [ ${index} -le ${count} ]; do
-    enable=$(omv_config_get "//services/remoteshare/glustershares/glustershare[position()=${index}]/enable")
-    sfref=$(omv_config_get "//services/remoteshare/glustershares/glustershare[position()=${index}]/sharedfolderref")
-    server=$(omv_config_get "//services/remoteshare/glustershares/glustershare[position()=${index}]/server")
-    volname=$(omv_config_get "//services/remoteshare/glustershares/glustershare[position()=${index}]/volname")
+    enable=$(omv_config_get "${XPATH_GLUSTER}${POSITION}${index}]/enable")
+    sfref=$(omv_config_get "${XPATH_GLUSTER}${POSITION}${index}]/sharedfolderref")
+    server=$(omv_config_get "${XPATH_GLUSTER}${POSITION}${index}]/server")
+    volname=$(omv_config_get "${XPATH_GLUSTER}${POSITION}${index}]/volname")
     sfpath=$(omv_get_sharedfolder_path "${sfref}")
     sfpath=${sfpath%/} #strip off trailing slash, if any
 
@@ -106,18 +113,17 @@ while [ ${index} -le ${count} ]; do
 done;
 
 
-count=$(omv_config_get_count "//services/remoteshare/smbshares/sshshare");
-
-# remote samba share entries
+# remote sshfs share entries
+count=$(omv_config_get_count "${XPATH_SSH}");
 index=1;
 while [ ${index} -le ${count} ]; do
-    enable=$(omv_config_get "//services/remoteshare/sshshares/sshshare[position()=${index}]/enable")
-    credfile=$(omv_config_get "//services/remoteshare/sshshares/sshshare[position()=${index}]/usefile")
-    sfref=$(omv_config_get "//services/remoteshare/sshshares/sshshare[position()=${index}]/sharedfolderref")
-    username=$(omv_config_get "//services/remoteshare/sshshares/sshshare[position()=${index}]/username")
-    password=$(omv_config_get "//services/remoteshare/sshshares/sshshare[position()=${index}]/password")
-    server=$(omv_config_get "//services/remoteshare/sshshares/sshshare[position()=${index}]/server")
-    smbname=$(omv_config_get "//services/remoteshare/sshshares/sshshare[position()=${index}]/smbname")
+    enable=$(omv_config_get "${XPATH_SSH}${POSITION}${index}]/enable")
+    credfile=$(omv_config_get "${XPATH_SSH}${POSITION}${index}]/usefile")
+    sfref=$(omv_config_get "${XPATH_SSH}${POSITION}${index}]/sharedfolderref")
+    username=$(omv_config_get "${XPATH_SSH}${POSITION}${index}]/username")
+    password=$(omv_config_get "${XPATH_SSH}${POSITION}${index}]/password")
+    server=$(omv_config_get "${XPATH_SSH}${POSITION}${index}]/server")
+    sshname=$(omv_config_get "${XPATH_SSH}${POSITION}${index}]/sshname")
     sfpath=$(omv_get_sharedfolder_path "${sfref}")
     sfpath=${sfpath%/} #strip off trailing slash, if any
 
@@ -137,24 +143,26 @@ while [ ${index} -le ${count} ]; do
 done;
 
 
-count=$(omv_config_get_count "//services/remoteshare/ftpshares/ftpshare");
+# remote curlftpfs share entries
+echo "" > ${FTP_CRED_FILE}
 
-# remote samba share entries
+count=$(omv_config_get_count "${XPATH_FTP}");
 index=1;
 while [ ${index} -le ${count} ]; do
-    enable=$(omv_config_get "//services/remoteshare/ftpshares/ftpshare[position()=${index}]/enable")
-    credfile=$(omv_config_get "//services/remoteshare/ftpshares/ftpshare[position()=${index}]/usefile")
-    sfref=$(omv_config_get "//services/remoteshare/ftpshares/ftpshare[position()=${index}]/sharedfolderref")
-    username=$(omv_config_get "//services/remoteshare/ftpshares/ftpshare[position()=${index}]/username")
-    password=$(omv_config_get "//services/remoteshare/ftpshares/ftpshare[position()=${index}]/password")
-    server=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/server")
-    smbname=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/smbname")
+    enable=$(omv_config_get "${XPATH_FTP}${POSITION}${index}]/enable")
+    credfile=$(omv_config_get "${XPATH_FTP}${POSITION}${index}]/usefile")
+    sfref=$(omv_config_get "${XPATH_FTP}${POSITION}${index}]/sharedfolderref")
+    username=$(omv_config_get "${XPATH_FTP}${POSITION}${index}]/username")
+    password=$(omv_config_get "${XPATH_FTP}${POSITION}${index}]/password")
+    server=$(omv_config_get "${XPATH_FTP}${POSITION}${index}]/server")
     sfpath=$(omv_get_sharedfolder_path "${sfref}")
     sfpath=${sfpath%/} #strip off trailing slash, if any
 
     if [ "${credfile}" != "0" ]; then
-        echo "username=${username}" > ${FTP_CRED_FILE}${sfref}
-        echo "password=${password}" >> ${FTP_CRED_FILE}${sfref}
+        echo "machine ${server}" >> ${FTP_CRED_FILE}
+        echo "login ${username}" >> ${FTP_CRED_FILE}
+        echo "password ${password}" >> ${FTP_CRED_FILE}
+        echo "" >> ${FTP_CRED_FILE}
     fi
 
     if [ ${enable} -eq 0 ]; then
@@ -170,14 +178,14 @@ done;
 
 # add credentials to davfs2 secrets file
 secent=$(
-    count=$(omv_config_get_count "//services/remoteshare/webdavshares/webdavshare");
+    count=$(omv_config_get_count "${XPATH_WEBDAV}");
 
     # remote webdav share entries
     index=1;
     while [ ${index} -le ${count} ]; do
-        username=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/username")
-        password=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/password")
-        sfref=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/sharedfolderref")
+        username=$(omv_config_get "${XPATH_WEBDAV}${POSITION}${index}]/username")
+        password=$(omv_config_get "${XPATH_WEBDAV}${POSITION}${index}]/password")
+        sfref=$(omv_config_get "${XPATH_WEBDAV}${POSITION}${index}]/sharedfolderref")
         sfpath=$(omv_get_sharedfolder_path "${sfref}")
         sfpath=${sfpath%/} #strip off trailing slash, if any
 
@@ -211,15 +219,15 @@ fi
 
 # add configuration to davfs2 config file
 cfgent=$(
-    count=$(omv_config_get_count "//services/remoteshare/webdavshares/webdavshare");
+    count=$(omv_config_get_count "${XPATH_WEBDAV}");
 
     # remote webdav share entries
     index=1;
     while [ ${index} -le ${count} ]; do
-        enable=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/enable")
-        davfs_opts=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/davfs_opts")
-        resource=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/resource")
-        sfref=$(omv_config_get "//services/remoteshare/webdavshares/webdavshare[position()=${index}]/sharedfolderref")
+        enable=$(omv_config_get "${XPATH_WEBDAV}${POSITION}${index}]/enable")
+        davfs_opts=$(omv_config_get "${XPATH_WEBDAV}${POSITION}${index}]/davfs_opts")
+        resource=$(omv_config_get "${XPATH_WEBDAV}${POSITION}${index}]/resource")
+        sfref=$(omv_config_get "${XPATH_WEBDAV}${POSITION}${index}]/sharedfolderref")
         sfpath=$(omv_get_sharedfolder_path "${sfref}")
         sfpath=${sfpath%/} #strip off trailing slash, if any
 

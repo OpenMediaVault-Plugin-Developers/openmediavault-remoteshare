@@ -40,34 +40,6 @@ Ext.define("OMV.module.admin.service.remoteshare.SshShare", {
     rpcGetMethod : "getSshShare",
     rpcSetMethod : "setSshShare",
 
-    plugins      : [{
-        ptype : "configobject"
-    },{
-        ptype        : "linkedfields",
-        correlations : [{
-            conditions : [{
-                name  : "guest",
-                value : false
-            }],
-            name       : [
-                "username",
-                "password",
-                "usefile"
-            ],
-            properties : "show"
-        },{
-            conditions : [{
-                name  : "guest",
-                value : true
-            }],
-            name       : [
-                "username",
-                "password"
-            ],
-            properties : "allowBlank"
-        }]
-    }],
-
     width        : 550,
 
     getFormItems : function() {
@@ -80,7 +52,7 @@ Ext.define("OMV.module.admin.service.remoteshare.SshShare", {
         },{
             xtype      : "textfield",
             name       : "server",
-            fieldLabel : _("Server"),
+            fieldLabel : _("Remote Host"),
             allowBlank : false,
             plugins    : [{
                 ptype : "fieldinfo",
@@ -89,7 +61,7 @@ Ext.define("OMV.module.admin.service.remoteshare.SshShare", {
         },{
             xtype      : "textfield",
             name       : "sshname",
-            fieldLabel : _("Share Name"),
+            fieldLabel : _("Remote Path"),
             allowBlank : false
         },{
             xtype      : "sharedfoldercombo",
@@ -98,15 +70,6 @@ Ext.define("OMV.module.admin.service.remoteshare.SshShare", {
             plugins    : [{
                 ptype : "fieldinfo",
                 text  : _("Samba share will be mounted as this shared folder for use in other plugins.")
-            }]
-        },{
-            xtype      : "checkbox",
-            name       : "guest",
-            fieldLabel : _("Guest"),
-            checked    : false,
-            plugins    : [{
-                ptype : "fieldinfo",
-                text  : _("If checked, share is mounted as guest.")
             }]
         },{
             xtype      : "textfield",
@@ -118,15 +81,6 @@ Ext.define("OMV.module.admin.service.remoteshare.SshShare", {
             name       : "password",
             fieldLabel : _("Password"),
             allowBlank : false
-        },{
-            xtype      : "checkbox",
-            name       : "usefile",
-            fieldLabel : _("Use File"),
-            checked    : false,
-            plugins    : [{
-                ptype : "fieldinfo",
-                text  : _("If checked, username and password are stored in a credential file instead of in fstab.")
-            }]
         }];
     }
 });
@@ -145,7 +99,7 @@ Ext.define("OMV.module.admin.service.remoteshare.SshShares", {
 
     hidePagingToolbar : false,
     stateful          : true,
-    stateId           : "1649057b-b1c0-1c48-a4c1-8c8d1fe52d7b",
+    stateId           : "1649057b-b1c0-1c48-a4c1-8c8d1fe52c7b",
     columns           : [{
         xtype     : "booleaniconcolumn",
         text      : _("Enabled"),
@@ -158,12 +112,12 @@ Ext.define("OMV.module.admin.service.remoteshare.SshShares", {
         trueIcon  : "switch_on.png",
         falseIcon : "switch_off.png"
     },{
-        text      : _("Server"),
+        text      : _("Remote Host"),
         sortable  : true,
         dataIndex : "server",
         stateId   : "server"
     },{
-        text      : _("Share Name"),
+        text      : _("Remote Path"),
         sortable  : true,
         dataIndex : "sshname",
         stateId   : "sshname"
@@ -175,8 +129,8 @@ Ext.define("OMV.module.admin.service.remoteshare.SshShares", {
     },{
         text      : _("Mount as"),
         sortable  : true,
-        dataIndex : "mountas",
-        stateId   : "mountas"
+        dataIndex : "username",
+        stateId   : "username"
     }],
 
     initComponent : function() {
@@ -192,7 +146,7 @@ Ext.define("OMV.module.admin.service.remoteshare.SshShares", {
                         { name : "server", type: "string" },
                         { name : "sshname", type: "string" },
                         { name : "sharename", type: "string" },
-                        { name : "mountas", type: "string" }
+                        { name : "username", type: "string" }
                     ]
                 }),
                 proxy : {
