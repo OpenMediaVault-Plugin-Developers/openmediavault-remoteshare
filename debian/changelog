@@ -1,7 +1,7 @@
 openmediavault-remoteshare (1.0.6) UNRELEASED; urgency=low
 
-  * Add sshfs tab
-  * Add curlftpfs tab
+  * Add sshfs tab - github issue #6
+  * Add curlftpfs tab - github issue #5
   * Update locales
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 20 Oct 2014 10:03:32 -0500
