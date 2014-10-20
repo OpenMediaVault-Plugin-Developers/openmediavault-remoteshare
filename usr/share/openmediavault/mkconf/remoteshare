@@ -20,7 +20,10 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-CRED_FILE="/root/.smbcredentials-"
+SMB_CRED_FILE="/root/.smbcredentials-"
+SSH_CRED_FILE="/root/.sshcredentials-"
+FTP_CRED_FILE="/root/.ftpcredentials-"
+
 OMV_REMOTESHARE_SECTION=${OMV_REMOTESHARE_SECTION:-"omv-remoteshare"}
 OMV_DAVFS2_CONFIG=${OMV_DAVFS2_CONFIG:-"/etc/davfs2/davfs2.conf"}
 OMV_DAVFS2_SECRETS=${OMV_DAVFS2_SECRETS:-"/etc/davfs2/secrets"}
@@ -65,8 +68,8 @@ while [ ${index} -le ${count} ]; do
     sfpath=${sfpath%/} #strip off trailing slash, if any
 
     if [ "${credfile}" != "0" ]; then
-        echo "username=${username}" > ${CRED_FILE}${sfref}
-        echo "password=${password}" >> ${CRED_FILE}${sfref}
+        echo "username=${username}" > ${SMB_CRED_FILE}${sfref}
+        echo "password=${password}" >> ${SMB_CRED_FILE}${sfref}
     fi
 
     if [ ${enable} -eq 0 ]; then
@@ -94,6 +97,68 @@ while [ ${index} -le ${count} ]; do
 
     if [ ${enable} -eq 0 ]; then
         if mount | grep -q -E "^${server}:/${volname} on ${sfpath}"; then
+            # entry is not enabled but currently mounted, so unmount it
+            umount ${sfpath} >/dev/null 2>&1
+        fi
+    fi
+
+    index=$(( ${index} + 1 ))
+done;
+
+
+count=$(omv_config_get_count "//services/remoteshare/smbshares/sshshare");
+
+# remote samba share entries
+index=1;
+while [ ${index} -le ${count} ]; do
+    enable=$(omv_config_get "//services/remoteshare/sshshares/sshshare[position()=${index}]/enable")
+    credfile=$(omv_config_get "//services/remoteshare/sshshares/sshshare[position()=${index}]/usefile")
+    sfref=$(omv_config_get "//services/remoteshare/sshshares/sshshare[position()=${index}]/sharedfolderref")
+    username=$(omv_config_get "//services/remoteshare/sshshares/sshshare[position()=${index}]/username")
+    password=$(omv_config_get "//services/remoteshare/sshshares/sshshare[position()=${index}]/password")
+    server=$(omv_config_get "//services/remoteshare/sshshares/sshshare[position()=${index}]/server")
+    smbname=$(omv_config_get "//services/remoteshare/sshshares/sshshare[position()=${index}]/smbname")
+    sfpath=$(omv_get_sharedfolder_path "${sfref}")
+    sfpath=${sfpath%/} #strip off trailing slash, if any
+
+    if [ "${credfile}" != "0" ]; then
+        echo "username=${username}" > ${SSH_CRED_FILE}${sfref}
+        echo "password=${password}" >> ${SSH_CRED_FILE}${sfref}
+    fi
+
+    if [ ${enable} -eq 0 ]; then
+        if mount | grep -q -E "^//${server}/${sshname} on ${sfpath}"; then
+            # entry is not enabled but currently mounted, so unmount it
+            umount ${sfpath} >/dev/null 2>&1
+        fi
+    fi
+
+    index=$(( ${index} + 1 ))
+done;
+
+
+count=$(omv_config_get_count "//services/remoteshare/ftpshares/ftpshare");
+
+# remote samba share entries
+index=1;
+while [ ${index} -le ${count} ]; do
+    enable=$(omv_config_get "//services/remoteshare/ftpshares/ftpshare[position()=${index}]/enable")
+    credfile=$(omv_config_get "//services/remoteshare/ftpshares/ftpshare[position()=${index}]/usefile")
+    sfref=$(omv_config_get "//services/remoteshare/ftpshares/ftpshare[position()=${index}]/sharedfolderref")
+    username=$(omv_config_get "//services/remoteshare/ftpshares/ftpshare[position()=${index}]/username")
+    password=$(omv_config_get "//services/remoteshare/ftpshares/ftpshare[position()=${index}]/password")
+    server=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/server")
+    smbname=$(omv_config_get "//services/remoteshare/smbshares/smbshare[position()=${index}]/smbname")
+    sfpath=$(omv_get_sharedfolder_path "${sfref}")
+    sfpath=${sfpath%/} #strip off trailing slash, if any
+
+    if [ "${credfile}" != "0" ]; then
+        echo "username=${username}" > ${FTP_CRED_FILE}${sfref}
+        echo "password=${password}" >> ${FTP_CRED_FILE}${sfref}
+    fi
+
+    if [ ${enable} -eq 0 ]; then
+        if mount | grep -q -E "^//${server}/${ftpname} on ${sfpath}"; then
             # entry is not enabled but currently mounted, so unmount it
             umount ${sfpath} >/dev/null 2>&1
         fi

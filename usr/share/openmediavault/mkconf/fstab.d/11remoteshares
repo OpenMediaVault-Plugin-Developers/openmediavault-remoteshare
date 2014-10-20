@@ -71,3 +71,29 @@ while [ ${index} -le ${count} ]; do
     fi
     index=$(( ${index} + 1 ))
 done;
+
+count=$(omv_config_get_count "//services/remoteshare/sshshares/sshshare");
+
+# remote sshfs share entries
+index=0;
+while [ ${index} -le ${count} ]; do
+    enable=$(omv_config_get "//services/remoteshare/sshshares/sshshare[position()=${index}]/enable")
+    entry=$(omv_config_get "//services/remoteshare/sshshares/sshshare[position()=${index}]/fstab_line")
+    if [ "${enable}" != "0" -a "${entry}" != "" ]; then
+        echo ${entry}
+    fi
+    index=$(( ${index} + 1 ))
+done;
+
+count=$(omv_config_get_count "//services/remoteshare/ftpshares/ftpshare");
+
+# remote ftpfs share entries
+index=0;
+while [ ${index} -le ${count} ]; do
+    enable=$(omv_config_get "//services/remoteshare/ftpshares/ftpshare[position()=${index}]/enable")
+    entry=$(omv_config_get "//services/remoteshare/ftpshares/ftpshare[position()=${index}]/fstab_line")
+    if [ "${enable}" != "0" -a "${entry}" != "" ]; then
+        echo ${entry}
+    fi
+    index=$(( ${index} + 1 ))
+done;
