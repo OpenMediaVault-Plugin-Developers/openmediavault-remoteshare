@@ -1791,7 +1791,6 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                 "uuid"            : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_UNDEFINED'].' },
                 "enable"          : { "type" : "boolean" },
                 "server"          : { "type" : "string" },
-                "ftpname"         : { "type" : "string" },
                 "sharedfolderref" : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' },
                 "guest"           : { "type" : "boolean" },
                 "username"        : { "type" : "string", "optional" : true },
