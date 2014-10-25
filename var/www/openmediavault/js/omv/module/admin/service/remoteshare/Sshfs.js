@@ -27,20 +27,25 @@
 // require("js/omv/data/Model.js")
 // require("js/omv/data/proxy/Rpc.js")
 // require("js/omv/form/field/SharedFolderComboBox.js")
+// require("js/omv/form/field/UserComboBox.js")
 
 Ext.define("OMV.module.admin.service.remoteshare.SshShare", {
-    extend : "OMV.workspace.window.Form",
-    uses   : [
+    extend   : "OMV.workspace.window.Form",
+    requires : [
         "OMV.form.field.SharedFolderComboBox",
-        "OMV.workspace.window.plugin.ConfigObject",
-        "OMV.form.plugin.LinkedFields"
+        "OMV.form.field.UserComboBox",
+    ],
+    uses     : [
+        "OMV.workspace.window.plugin.ConfigObject"
     ],
 
     rpcService   : "remoteshare",
     rpcGetMethod : "getSshShare",
     rpcSetMethod : "setSshShare",
 
-    width        : 550,
+    plugins      : [{
+        ptype : "configobject"
+    }],
 
     getFormItems : function() {
         var me = this;
@@ -60,27 +65,33 @@ Ext.define("OMV.module.admin.service.remoteshare.SshShare", {
             }]
         },{
             xtype      : "textfield",
-            name       : "sshname",
+            name       : "remotepath",
             fieldLabel : _("Remote Path"),
             allowBlank : false
+        },{
+            xtype         : "numberfield",
+            name          : "port",
+            fieldLabel    : _("Port"),
+            vtype         : "port",
+            minValue      : 1,
+            maxValue      : 65535,
+            allowDecimals : false,
+            allowBlank    : false,
+            value         : 22
         },{
             xtype      : "sharedfoldercombo",
             name       : "sharedfolderref",
             fieldLabel : _("Shared Folder"),
             plugins    : [{
                 ptype : "fieldinfo",
-                text  : _("Samba share will be mounted as this shared folder for use in other plugins.")
+                text  : _("Remote path will be mounted as this shared folder for use in other plugins.")
             }]
         },{
-            xtype      : "textfield",
+            xtype      : "usercombo",
             name       : "username",
-            fieldLabel : _("Username"),
-            allowBlank : false
-        },{
-            xtype      : "textfield",
-            name       : "password",
-            fieldLabel : _("Password"),
-            allowBlank : false
+            fieldLabel : _("User"),
+            value      : "nobody",
+            userType   : "normal"
         }];
     }
 });
@@ -119,8 +130,13 @@ Ext.define("OMV.module.admin.service.remoteshare.SshShares", {
     },{
         text      : _("Remote Path"),
         sortable  : true,
-        dataIndex : "sshname",
-        stateId   : "sshname"
+        dataIndex : "remotepath",
+        stateId   : "remotepath"
+    },{
+        text      : _("Port"),
+        sortable  : true,
+        dataIndex : "port",
+        stateId   : "port"
     },{
         text      : _("Shared Folder"),
         sortable  : true,
@@ -144,7 +160,8 @@ Ext.define("OMV.module.admin.service.remoteshare.SshShares", {
                         { name : "uuid", type: "string" },
                         { name : "enable", type: "boolean" },
                         { name : "server", type: "string" },
-                        { name : "sshname", type: "string" },
+                        { name : "remotepath", type: "string" },
+                        { name : "port", type: "integer" },
                         { name : "sharename", type: "string" },
                         { name : "username", type: "string" }
                     ]

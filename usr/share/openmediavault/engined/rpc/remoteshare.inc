@@ -1457,7 +1457,8 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
             );
         }
         // Modify the result object.
-        $object['enable']  = boolval($object['enable']);
+        $object['enable'] = boolval($object['enable']);
+        $object['port']   = intval($object['port']);
 
         return $object;
     }
@@ -1479,10 +1480,10 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                 "uuid"            : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_UNDEFINED'].' },
                 "enable"          : { "type" : "boolean" },
                 "server"          : { "type" : "string" },
-                "sshname"         : { "type" : "string" },
+                "remotepath"      : { "type" : "string" },
+                "port"            : { "type" : "integer" },
                 "sharedfolderref" : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' },
-                "username"        : { "type" : "string", "optional" : true },
-                "password"        : { "type" : "string", "optional" : true }
+                "username"        : { "type" : "string" }
             }
         }');
 
@@ -1563,27 +1564,27 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
             "uuid"            => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
             "enable"          => array_boolval($params, 'enable'),
             "server"          => $params['server'],
-            "sshname"         => $params['sshname'],
+            "remotepath"      => $params['remotepath'],
+            "port"            => $params['port'],
             "sharedfolderref" => $params['sharedfolderref'],
-            "username"        => $params['username'],
-            "password"        => $params['password']
+            "username"        => $params['username']
         );
 
         $sfPath = OMVRpc::exec("ShareMgmt", "getPath", array("uuid" => $params['sharedfolderref']), $context);
+        $userInfo = posix_getpwnam($object['username']);
+        $identityFile = sprintf("%s/.ssh/id_rsa", $userInfo['dir']);
+        $remotePath = str_replace(" ", "\\\\040", $object['remotepath']);
 
         // sshfs#USERNAME@REMOTE_HOST:REMOTE_PATH MOUNT_POINT fuse SSHFS_OPTIONS 0 0
-        // sshfs#user@server.domain.com:/<your default dir> <mount point> fuse credentials=<path to .credentials>.credentials 0 0
-        // .sshcredentials
-        //   username=msusername
-        //   password=mspassword
-        $sshname = str_replace(" ", "\\\\040", $object['sshname']);
+        // sshfs#user@server.domain.com:/<your default dir> <mount point> fuse IdentityFile=<path to key> 0 0
         $object['fstab_line'] = sprintf(
-            "sshfs#%s@%s:%s %s fuse credentials=/root/.sshcredentials-%s,_netdev 0 0",
+            "sshfs#%s@%s:%s %s fuse IdentityFile=%s,_netdev,port=%s 0 0",
             $object['username'],
             $object['server'],
-            $sshname,
+            $remotePath,
             $sfPath,
-            $object['sharedfolderref']
+            $identityFile,
+            $object['port']
         );
 
         // Set the configuration object.
@@ -1668,13 +1669,6 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
             ),
             $context
         );
-
-        // delete credential file
-        $credfile = "/root/.sshcredentials-".$object['sharedfolderref'];
-        if (file_exists($credfile))
-        {
-            unlink($credfile);
-        }
 
         // Return the deleted configuration object.
         return $object;
