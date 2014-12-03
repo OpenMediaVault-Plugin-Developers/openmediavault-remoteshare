@@ -844,6 +844,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         'cache_size'   => 1,
         'table_size'   => 4096,
         'delay_upload' => 1,
+        'buf_size'     => 16,
    );
 
     public function getWebdavShare($params, $context)
@@ -878,12 +879,12 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         // Modify the result object.
         $object['enable'] = boolval($object['enable']);
 
-        preg_match_all("/([^::]+)::([^;]+)/", $object['davfs_opts'], $davfs_opts);
+        preg_match_all("/([^::]+)::([^;]+);?/", $object['davfs_opts'], $davfs_opts);
         $davfs_opts = array_combine($davfs_opts[1], $davfs_opts[2]);
 
         foreach($this->davfs_defaults as $optk => $optv)
         {
-            $object[$optk] = (empty($davfs_opts[$optk])) ? $optv : $davfs_opts[$optk];
+            $object[$optk] = isset($davfs_opts[$optk]) ? $davfs_opts[$optk] : $optv;
         }
 
         return $object;
@@ -915,7 +916,8 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                 "if_match_bug"    : { "type" : "boolean" },
                 "cache_size"      : { "type" : "integer", "minimum" : 1, "maximum" : 65535 },
                 "table_size"      : { "type" : "integer", "minimum" : 1, "maximum" : 65535 },
-                "delay_upload"    : { "type" : "integer", "minimum" : 0, "maximum" : 65535 }
+                "delay_upload"    : { "type" : "integer", "minimum" : 0, "maximum" : 65535 },
+                "buf_size"        : { "type" : "integer", "minimum" : 1, "maximum" : 65535 }
             }
         }');
 
@@ -1004,7 +1006,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
 
         foreach($this->davfs_defaults as $optk => $optv)
         {
-            $optarr[] = $optk."::".(empty($params[$optk]) ? $optv : $params[$optk]);
+            $optarr[] = $optk."::".(isset($params[$optk]) ? (is_bool($params[$optk]) ? (int)$params[$optk] : $params[$optk]) : $optv);
         }
         $object['davfs_opts'] = implode(';', $optarr);
 

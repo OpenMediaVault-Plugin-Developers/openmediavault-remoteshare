@@ -162,6 +162,19 @@ Ext.define("OMV.module.admin.service.remoteshare.WebdavShare", {
                     ptype : "fieldinfo",
                     text  : _("Delay in seconds before a file will be uploaded to the server to avoid upload of temporary files.")
                 }]
+            },{
+                xtype         : "numberfield",
+                name          : "buf_size",
+                fieldLabel    : _("buf_size"),
+                minValue      : 0,
+                maxValue      : 65535,
+                allowDecimals : false,
+                allowBlank    : false,
+                value         : 1,
+                plugins       : [{
+                    ptype : "fieldinfo",
+                    text  : _("Size in KiByte of the buffer used to communicate with the kernel file system.")
+                }]
             }]
         }];
     }
