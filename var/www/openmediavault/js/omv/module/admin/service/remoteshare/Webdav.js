@@ -55,7 +55,7 @@ Ext.define("OMV.module.admin.service.remoteshare.WebdavShare", {
         },{
             xtype      : "textfield",
             name       : "resource",
-            fieldLabel : _("WebDAV URL"),
+            fieldLabel : "WebDAV URL",
             allowBlank : false,
             plugins    : [{
                 ptype : "fieldinfo",
@@ -99,7 +99,7 @@ Ext.define("OMV.module.admin.service.remoteshare.WebdavShare", {
            },{
                 xtype      : "checkbox",
                 name       : "use_locks",
-                fieldLabel : _("use_locks"),
+                fieldLabel : "use_locks",
                 checked    : false,
                 plugins    : [{
                     ptype : "fieldinfo",
@@ -108,7 +108,7 @@ Ext.define("OMV.module.admin.service.remoteshare.WebdavShare", {
             },{
                 xtype      : "checkbox",
                 name       : "gui_optimize",
-                fieldLabel : _("gui_optimize"),
+                fieldLabel : "gui_optimize",
                 checked    : true,
                 plugins    : [{
                     ptype : "fieldinfo",
@@ -117,7 +117,7 @@ Ext.define("OMV.module.admin.service.remoteshare.WebdavShare", {
             },{
                 xtype      : "checkbox",
                 name       : "if_match_bug",
-                fieldLabel : _("if_match_bug"),
+                fieldLabel : "if_match_bug",
                 checked    : true,
                 plugins    : [{
                     ptype : "fieldinfo",
@@ -126,7 +126,7 @@ Ext.define("OMV.module.admin.service.remoteshare.WebdavShare", {
             },{
                 xtype         : "numberfield",
                 name          : "cache_size",
-                fieldLabel    : _("cache_size"),
+                fieldLabel    : "cache_size",
                 minValue      : 1,
                 maxValue      : 65535,
                 allowDecimals : false,
@@ -139,7 +139,7 @@ Ext.define("OMV.module.admin.service.remoteshare.WebdavShare", {
             },{
                 xtype         : "numberfield",
                 name          : "table_size",
-                fieldLabel    : _("table_size"),
+                fieldLabel    : "table_size",
                 minValue      : 1,
                 maxValue      : 65535,
                 allowDecimals : false,
@@ -152,7 +152,7 @@ Ext.define("OMV.module.admin.service.remoteshare.WebdavShare", {
             },{
                 xtype         : "numberfield",
                 name          : "delay_upload",
-                fieldLabel    : _("delay_upload"),
+                fieldLabel    : "delay_upload",
                 minValue      : 0,
                 maxValue      : 65535,
                 allowDecimals : false,
@@ -165,7 +165,7 @@ Ext.define("OMV.module.admin.service.remoteshare.WebdavShare", {
             },{
                 xtype         : "numberfield",
                 name          : "buf_size",
-                fieldLabel    : _("buf_size"),
+                fieldLabel    : "buf_size",
                 minValue      : 0,
                 maxValue      : 65535,
                 allowDecimals : false,
@@ -207,7 +207,7 @@ Ext.define("OMV.module.admin.service.remoteshare.WebdavShares", {
         trueIcon  : "switch_on.png",
         falseIcon : "switch_off.png"
     },{
-        text      : _("WebDAV URL"),
+        text      : "WebDAV URL",
         sortable  : true,
         dataIndex : "resource",
         stateId   : "resource"
@@ -298,7 +298,7 @@ Ext.define("OMV.module.admin.service.remoteshare.WebdavShares", {
 OMV.WorkspaceManager.registerPanel({
     id        : "webdavshares",
     path      : "/service/remoteshare",
-    text      : _("WebDAV"),
+    text      : "WebDAV",
     position  : 30,
     className : "OMV.module.admin.service.remoteshare.WebdavShares"
 });
