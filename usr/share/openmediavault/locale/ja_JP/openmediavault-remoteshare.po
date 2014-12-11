@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 10:40-0500\n"
-"PO-Revision-Date: 2014-06-02 02:59+0000\n"
-"Last-Translator: Toshihiro Kan <kansuke4649@gmail.com>\n"
+"POT-Creation-Date: 2014-12-11 08:25-0600\n"
+"PO-Revision-Date: 2014-12-11 14:28+0000\n"
+"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,14 +21,6 @@ msgstr ""
 msgid "Add share"
 msgstr "共有の追加"
 
-msgid "Davfs2 settings"
-msgstr "Davfs2設定"
-
-msgid ""
-"Delay in seconds before a file will be uploaded to the server to avoid "
-"upload of temporary files."
-msgstr "一時ファイルのアップロードを避けるためにファイルがサーバにアップロードされる前に数秒遅延されます。"
-
 msgid "Edit share"
 msgstr "共有の編集"
 
@@ -38,90 +30,36 @@ msgstr "有効"
 msgid "Enabled"
 msgstr "有効化済"
 
-msgid "Export"
-msgstr "エクスポート"
-
-msgid "Extra options"
-msgstr "その他のオプション"
-
-msgid "Guest"
-msgstr "ゲスト"
-
-msgid ""
-"Hostname, IP address, or fully qualified domain name of the server exporting"
-" the file system."
-msgstr "ファイルシステムをエクスポートするサーバーのホスト名、IPアドレス、またはサーバの完全修飾ドメイン名。"
-
 msgid "Hostname, IP address, or fully qualified domain name of the server."
 msgstr "ホスト名、IPアドレス、またはサーバの完全修飾ドメイン名。"
-
-msgid "If checked, share is mounted as guest."
-msgstr "チェックするとゲストとして共有をマウントします。"
-
-msgid ""
-"If checked, username and password are stored in a credential file instead of"
-" in fstab."
-msgstr "チェックするとユーザー名とパスワードは、資格証明ファイルではなくfstabに格納されます。"
-
-msgid "Leave unchecked for NFSv2 or NFSv3 servers. Check for NFSv4 servers."
-msgstr "NFSv2またはNFSv3サーバの場合チェックしないようにします。 NFSv4サーバの場合はチェックします。"
 
 msgid "Mount as"
 msgstr "マウントします"
 
-msgid "NFS"
-msgstr "NFS"
+msgid "Port"
+msgstr ""
+
+msgid "Remote Host"
+msgstr ""
+
+msgid "Remote Path"
+msgstr ""
 
 msgid ""
-"NFS share will be mounted as this shared folder for use in other plugins."
-msgstr "NFS共有は他のプラグインで使用するためにこの共有フォルダとしてマウントされます"
+"Remote path will be mounted as this shared folder for use in other plugins."
+msgstr ""
 
-msgid "NFSv4"
-msgstr "NFSv4"
-
-msgid ""
-"Optimize fetching file infos for all files in a directory vs. just for the "
-"file to be opened."
-msgstr "ディレクトリ内のすべてのファイルあるいはちょうど開かれるファイルのためにファイル情報の取得を最適化します。"
-
-msgid "Password"
-msgstr "パスワード"
-
-msgid "Path to the exported directory."
-msgstr "エクスポートディレクトリのパス。"
-
-msgid "Remote Shares"
-msgstr "リモート共有"
-
-msgid "Samba"
-msgstr "Samba"
-
-msgid ""
-"Samba share will be mounted as this shared folder for use in other plugins."
-msgstr "Samba共有は他のプラグインで使用するためにこの共有フォルダとしてマウントされます"
-
-msgid "Server"
-msgstr "サーバ"
-
-msgid "Share Name"
-msgstr "共有名"
+msgid "SSHFS"
+msgstr ""
 
 msgid "Shared Folder"
 msgstr "共有フォルダ"
 
-msgid "The amount of disk space in MiByte that may be used."
-msgstr "MiByte単位で使用できるディスクスペースの量。"
+msgid "This share is already in use by another remote FTP share."
+msgstr ""
 
-msgid ""
-"The number of entries in the hash table for each known file. The value "
-"should be a power of 2."
-msgstr "既知の各ファイルについてのハッシュテーブル内のエントリの数。値は2のべき乗でなければなりません。"
-
-msgid ""
-"These settings directly influence how the WebDAV resource is mounted as a "
-"local filesystem. Please only change the defaults if you know what you are "
-"doing."
-msgstr "これらの設定は、直接WebDAVリソースがローカルファイルシステムとしてマウントされている方法に影響を与えます。\nこの設定を理解できるいる場合のみ、デフォルトを変更してください。"
+msgid "This share is already in use by another remote GlusterFS share."
+msgstr ""
 
 msgid "This share is already in use by another remote NFS share."
 msgstr "この共有は、別のリモートNFS共有で既に使用されています。"
@@ -132,49 +70,11 @@ msgstr "この共有は、別のリモートSamba共有で既に使用されて�
 msgid "This share is already in use by another remote WebDAV share."
 msgstr "この共有は、別のリモートWebDAV共有によってすでに使用されています。"
 
-msgid "URL of the WebDAV resource."
-msgstr "WebDAVリソースのURL。"
+msgid "This share is already in use by another remote sshfs share."
+msgstr ""
 
-msgid "Use File"
-msgstr "ファイルを使用する"
-
-msgid "Use HEAD instead of If-Match and If-None-Match-headers."
-msgstr "If-MatchとIf-None-Match-headersの代わりにHEADを使用してください。"
-
-msgid "Username"
-msgstr "ユーザー名"
-
-msgid "WebDAV"
-msgstr "WebDAV"
-
-msgid "WebDAV URL"
-msgstr "WebDAV URL"
-
-msgid ""
-"WebDAV resource will be mounted as this shared folder for use in other "
-"plugins."
-msgstr "WebDAVのリソースは、他のプラグインで使用するため、この共有フォルダとしてマウントされます。"
-
-msgid "Whether to lock files on the server when they are opened for writing."
-msgstr "書き込みのために開かれているサーバー上のファイルをロックするかどうか。"
-
-msgid "cache_size"
-msgstr "cache_size"
-
-msgid "delay_upload"
-msgstr "delay_upload"
-
-msgid "gui_optimize"
-msgstr "gui_optimize"
-
-msgid "if_match_bug"
-msgstr "if_match_bug"
+msgid "User"
+msgstr ""
 
 msgid "n/a"
 msgstr "n/a"
-
-msgid "table_size"
-msgstr "table_size"
-
-msgid "use_locks"
-msgstr "use_locks"

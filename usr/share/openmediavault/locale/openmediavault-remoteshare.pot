@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 10:40-0500\n"
+"POT-Creation-Date: 2014-12-11 08:25-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,12 +20,6 @@ msgstr ""
 msgid "Add share"
 msgstr ""
 
-msgid "Davfs2 settings"
-msgstr ""
-
-msgid "Delay in seconds before a file will be uploaded to the server to avoid upload of temporary files."
-msgstr ""
-
 msgid "Edit share"
 msgstr ""
 
@@ -35,76 +29,34 @@ msgstr ""
 msgid "Enabled"
 msgstr ""
 
-msgid "Export"
-msgstr ""
-
-msgid "Extra options"
-msgstr ""
-
-msgid "Guest"
-msgstr ""
-
-msgid "Hostname, IP address, or fully qualified domain name of the server exporting the file system."
-msgstr ""
-
 msgid "Hostname, IP address, or fully qualified domain name of the server."
-msgstr ""
-
-msgid "If checked, share is mounted as guest."
-msgstr ""
-
-msgid "If checked, username and password are stored in a credential file instead of in fstab."
-msgstr ""
-
-msgid "Leave unchecked for NFSv2 or NFSv3 servers. Check for NFSv4 servers."
 msgstr ""
 
 msgid "Mount as"
 msgstr ""
 
-msgid "NFS"
+msgid "Port"
 msgstr ""
 
-msgid "NFS share will be mounted as this shared folder for use in other plugins."
+msgid "Remote Host"
 msgstr ""
 
-msgid "NFSv4"
+msgid "Remote Path"
 msgstr ""
 
-msgid "Optimize fetching file infos for all files in a directory vs. just for the file to be opened."
+msgid "Remote path will be mounted as this shared folder for use in other plugins."
 msgstr ""
 
-msgid "Password"
-msgstr ""
-
-msgid "Path to the exported directory."
-msgstr ""
-
-msgid "Remote Shares"
-msgstr ""
-
-msgid "Samba"
-msgstr ""
-
-msgid "Samba share will be mounted as this shared folder for use in other plugins."
-msgstr ""
-
-msgid "Server"
-msgstr ""
-
-msgid "Share Name"
+msgid "SSHFS"
 msgstr ""
 
 msgid "Shared Folder"
 msgstr ""
 
-msgid "The amount of disk space in MiByte that may be used."
+msgid "This share is already in use by another remote FTP share."
 msgstr ""
 
-msgid "The number of entries in the hash table for each known file. The value should be a power of 2."
-msgstr ""
-
-msgid "These settings directly influence how the WebDAV resource is mounted as a local filesystem. Please only change the defaults if you know what you are doing."
+msgid "This share is already in use by another remote GlusterFS share."
 msgstr ""
 
 msgid "This share is already in use by another remote NFS share."
@@ -116,47 +68,11 @@ msgstr ""
 msgid "This share is already in use by another remote WebDAV share."
 msgstr ""
 
-msgid "URL of the WebDAV resource."
+msgid "This share is already in use by another remote sshfs share."
 msgstr ""
 
-msgid "Use File"
-msgstr ""
-
-msgid "Use HEAD instead of If-Match and If-None-Match-headers."
-msgstr ""
-
-msgid "Username"
-msgstr ""
-
-msgid "WebDAV"
-msgstr ""
-
-msgid "WebDAV URL"
-msgstr ""
-
-msgid "WebDAV resource will be mounted as this shared folder for use in other plugins."
-msgstr ""
-
-msgid "Whether to lock files on the server when they are opened for writing."
-msgstr ""
-
-msgid "cache_size"
-msgstr ""
-
-msgid "delay_upload"
-msgstr ""
-
-msgid "gui_optimize"
-msgstr ""
-
-msgid "if_match_bug"
+msgid "User"
 msgstr ""
 
 msgid "n/a"
-msgstr ""
-
-msgid "table_size"
-msgstr ""
-
-msgid "use_locks"
 msgstr ""

@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 10:40-0500\n"
-"PO-Revision-Date: 2014-05-29 10:03+0000\n"
-"Last-Translator: songming <by@songming.me>\n"
+"POT-Creation-Date: 2014-12-11 08:25-0600\n"
+"PO-Revision-Date: 2014-12-11 14:28+0000\n"
+"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,14 +21,6 @@ msgstr ""
 msgid "Add share"
 msgstr "添加共享"
 
-msgid "Davfs2 settings"
-msgstr "Davfs2设置"
-
-msgid ""
-"Delay in seconds before a file will be uploaded to the server to avoid "
-"upload of temporary files."
-msgstr "在上传文件到服务器前延迟多少秒，以避免上传临时文件。"
-
 msgid "Edit share"
 msgstr "编辑共享"
 
@@ -38,90 +30,36 @@ msgstr "启用"
 msgid "Enabled"
 msgstr "已启用"
 
-msgid "Export"
-msgstr "输出"
-
-msgid "Extra options"
-msgstr "扩展选项"
-
-msgid "Guest"
-msgstr "游客"
-
-msgid ""
-"Hostname, IP address, or fully qualified domain name of the server exporting"
-" the file system."
-msgstr "主机名、IP地址或者文件系统对应的完整域名。"
-
 msgid "Hostname, IP address, or fully qualified domain name of the server."
 msgstr "主机名、IP地址或者服务器的完整域名。"
-
-msgid "If checked, share is mounted as guest."
-msgstr "如果选中，将按游客模式挂载共享。"
-
-msgid ""
-"If checked, username and password are stored in a credential file instead of"
-" in fstab."
-msgstr "如果选中，用户名和密码会保存在credential文件而不是保存到fstab。"
-
-msgid "Leave unchecked for NFSv2 or NFSv3 servers. Check for NFSv4 servers."
-msgstr "如果没有勾选NFSv2或NFSv3服务选项，只检查NFSv4服务器。"
 
 msgid "Mount as"
 msgstr "挂载用户"
 
-msgid "NFS"
-msgstr "NFS"
-
-msgid ""
-"NFS share will be mounted as this shared folder for use in other plugins."
-msgstr "将挂载NFS文件系统到该共享文件夹以供其它插件使用。"
-
-msgid "NFSv4"
-msgstr "NFSv4"
-
-msgid ""
-"Optimize fetching file infos for all files in a directory vs. just for the "
-"file to be opened."
+msgid "Port"
 msgstr ""
 
-msgid "Password"
-msgstr "密码"
+msgid "Remote Host"
+msgstr ""
 
-msgid "Path to the exported directory."
-msgstr "输出路径目录。"
-
-msgid "Remote Shares"
-msgstr "Remote Shares"
-
-msgid "Samba"
-msgstr "Samba"
+msgid "Remote Path"
+msgstr ""
 
 msgid ""
-"Samba share will be mounted as this shared folder for use in other plugins."
-msgstr "将挂载Samba文件系统到该共享文件夹以供其它插件使用。"
+"Remote path will be mounted as this shared folder for use in other plugins."
+msgstr ""
 
-msgid "Server"
-msgstr "服务器"
-
-msgid "Share Name"
-msgstr "共享名"
+msgid "SSHFS"
+msgstr ""
 
 msgid "Shared Folder"
 msgstr "共享文件夹"
 
-msgid "The amount of disk space in MiByte that may be used."
-msgstr "挂载磁盘上的缓存空间多少MB。"
-
-msgid ""
-"The number of entries in the hash table for each known file. The value "
-"should be a power of 2."
+msgid "This share is already in use by another remote FTP share."
 msgstr ""
 
-msgid ""
-"These settings directly influence how the WebDAV resource is mounted as a "
-"local filesystem. Please only change the defaults if you know what you are "
-"doing."
-msgstr "这些设置直接影响怎样将WebDAV资源挂载到本地文件系统，如果你不了解这些设置请使用默认值。"
+msgid "This share is already in use by another remote GlusterFS share."
+msgstr ""
 
 msgid "This share is already in use by another remote NFS share."
 msgstr "该共享已经被其它远程NFS共享使用了。"
@@ -132,49 +70,11 @@ msgstr "该共享已经被其它远程Samba共享使用了。"
 msgid "This share is already in use by another remote WebDAV share."
 msgstr "该共享文件夹已经被其它远程WebDAV使用。"
 
-msgid "URL of the WebDAV resource."
-msgstr "WebDAV资源地址。"
-
-msgid "Use File"
-msgstr "使用文件"
-
-msgid "Use HEAD instead of If-Match and If-None-Match-headers."
+msgid "This share is already in use by another remote sshfs share."
 msgstr ""
 
-msgid "Username"
-msgstr "用户名"
-
-msgid "WebDAV"
-msgstr "WebDAV"
-
-msgid "WebDAV URL"
-msgstr "WebDAV URL"
-
-msgid ""
-"WebDAV resource will be mounted as this shared folder for use in other "
-"plugins."
-msgstr "WebDAV资源将挂载到该文件夹以供其它插件使用。"
-
-msgid "Whether to lock files on the server when they are opened for writing."
-msgstr "当服务器上的文件以写模式打开时锁定文件。"
-
-msgid "cache_size"
-msgstr "缓存大小"
-
-msgid "delay_upload"
-msgstr "延迟上传"
-
-msgid "gui_optimize"
-msgstr "gui优化"
-
-msgid "if_match_bug"
-msgstr "如果匹配错误"
+msgid "User"
+msgstr ""
 
 msgid "n/a"
 msgstr "n/a"
-
-msgid "table_size"
-msgstr ""
-
-msgid "use_locks"
-msgstr "使用锁定"

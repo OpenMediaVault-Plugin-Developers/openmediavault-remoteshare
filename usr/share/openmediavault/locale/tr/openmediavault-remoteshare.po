@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# zubr139, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
@@ -11,18 +10,18 @@ msgstr ""
 "POT-Creation-Date: 2014-12-11 08:25-0600\n"
 "PO-Revision-Date: 2014-12-11 14:28+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
-"Language-Team: Ukrainian (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/uk/)\n"
+"Language-Team: Turkish (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Add share"
-msgstr "Додати спільний ресурс"
+msgstr ""
 
 msgid "Edit share"
-msgstr "Редагувати спільний ресурс"
+msgstr ""
 
 msgid "Enable"
 msgstr ""
@@ -53,7 +52,7 @@ msgid "SSHFS"
 msgstr ""
 
 msgid "Shared Folder"
-msgstr "Спільна тека"
+msgstr ""
 
 msgid "This share is already in use by another remote FTP share."
 msgstr ""

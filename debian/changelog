@@ -1,11 +1,10 @@
-openmediavault-remoteshare (1.0.6) UNRELEASED; urgency=low
+openmediavault-remoteshare (1.0.6) stable; urgency=low
 
-  * Add sshfs tab - github issue #6 - Add support for SSH mounts
   * Add curlftpfs tab - github issue #5 - Add support for FTP shares
   * Fix unmount - github issue #4 - Share should be unmounted when disabled 
   * Update locales
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 20 Oct 2014 10:03:32 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 11 Dec 2014 08:25:20 -0600
 
 openmediavault-remoteshare (1.0.5) stable; urgency=low
 
