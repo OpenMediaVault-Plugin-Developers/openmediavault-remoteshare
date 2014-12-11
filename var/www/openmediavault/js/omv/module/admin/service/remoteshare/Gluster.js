@@ -73,7 +73,7 @@ Ext.define("OMV.module.admin.service.remoteshare.GlusterShare", {
             fieldLabel : _("Shared Folder"),
             plugins    : [{
                 ptype : "fieldinfo",
-                text  : _("Samba share will be mounted as this shared folder for use in other plugins.")
+                text  : _("Gluster share will be mounted as this shared folder for use in other plugins.")
             }]
         }];
     }

@@ -93,7 +93,7 @@ Ext.define("OMV.module.admin.service.remoteshare.FtpShare", {
             fieldLabel : _("Shared Folder"),
             plugins    : [{
                 ptype : "fieldinfo",
-                text  : _("Samba share will be mounted as this shared folder for use in other plugins.")
+                text  : _("FTP share will be mounted as this shared folder for use in other plugins.")
             }]
         },{
             xtype      : "checkbox",
