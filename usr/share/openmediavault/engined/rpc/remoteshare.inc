@@ -340,7 +340,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                 {
                     throw new OMVException(
                         OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                        gettext("This share is already in use by another remote sshfs share.")
+                        gettext("This share is already in use by another remote SSHFS share.")
                     );
                 }
                 $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathFtpShare(), $params['sharedfolderref']);
@@ -642,7 +642,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                 {
                     throw new OMVException(
                         OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                        gettext("This share is already in use by another remote sshfs share.")
+                        gettext("This share is already in use by another remote SSHFS share.")
                     );
                 }
                 $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathFtpShare(), $params['sharedfolderref']);
@@ -979,7 +979,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                 {
                     throw new OMVException(
                         OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                        gettext("This share is already in use by another remote sshfs share.")
+                        gettext("This share is already in use by another remote SSHFS share.")
                     );
                 }
                 $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathFtpShare(), $params['sharedfolderref']);
@@ -1270,7 +1270,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                 {
                     throw new OMVException(
                         OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                        gettext("This share is already in use by another remote sshfs share.")
+                        gettext("This share is already in use by another remote SSHFS share.")
                     );
                 }
                 $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathFtpShare(), $params['sharedfolderref']);
@@ -1547,7 +1547,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                 {
                     throw new OMVException(
                         OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                        gettext("This share is already in use by another remote sshfs share.")
+                        gettext("This share is already in use by another remote SSHFS share.")
                     );
                 }
                 $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathFtpShare(), $params['sharedfolderref']);
@@ -1845,7 +1845,7 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
                 {
                     throw new OMVException(
                         OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                        gettext("This share is already in use by another remote sshfs share.")
+                        gettext("This share is already in use by another remote SSHFS share.")
                     );
                 }
                 $xPath = sprintf("%s[sharedfolderref='%s']", $this->getXPathFtpShare(), $params['sharedfolderref']);
