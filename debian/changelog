@@ -1,3 +1,10 @@
+openmediavault-remoteshare (1.0.7) stable; urgency=low
+
+  * Fix ftpfs fstab line
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 27 Dec 2014 07:36:56 -0600
+
 openmediavault-remoteshare (1.0.6) stable; urgency=low
 
   * Add curlftpfs tab - github issue #5 - Add support for FTP shares

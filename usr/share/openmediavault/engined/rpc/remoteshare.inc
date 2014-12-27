@@ -1880,15 +1880,17 @@ class OMVRpcServiceRemoteShare extends OMVRpcServiceAbstract
         // login ftp_un
         // password ftp_pw
 
+        $options = "rw,_netdev,gid=100,allow_other";
+
         if ( $object['guest'] === true )
         {
-            $object['fstab_line'] = sprintf("curlftpfs#%s %s fuse rw,_netdev 0 0", $object['server'], $sfPath);
+            $object['fstab_line'] = sprintf("curlftpfs#%s %s fuse %s 0 0", $object['server'], $sfPath, $options);
         }
         else
         {
             if( $object['usefile'] === true )
             {
-                $object['fstab_line'] = sprintf("curlftpfs#%s %s fuse rw,_netdev 0 0", $object['server'], $sfPath);
+                $object['fstab_line'] = sprintf("curlftpfs#%s %s fuse %s 0 0", $object['server'], $sfPath, $options);
             }
             else
             {
