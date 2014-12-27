@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-11 08:25-0600\n"
-"PO-Revision-Date: 2014-12-11 14:28+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
+"POT-Creation-Date: 2014-12-11 09:53-0600\n"
+"PO-Revision-Date: 2014-12-15 18:23+0000\n"
+"Last-Translator: kochin <kochinc@outlook.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,32 +37,35 @@ msgid "Mount as"
 msgstr "掛載為"
 
 msgid "Port"
-msgstr ""
+msgstr "通訊埠"
 
 msgid "Remote Host"
-msgstr ""
+msgstr "遠端主機"
 
 msgid "Remote Path"
-msgstr ""
+msgstr "遠端路徑"
 
 msgid ""
 "Remote path will be mounted as this shared folder for use in other plugins."
-msgstr ""
+msgstr "遠端路徑將會被掛載為此共享檔案夾以供其它插件使用。"
 
 msgid "SSHFS"
-msgstr ""
+msgstr "SSHFS"
 
 msgid "Shared Folder"
 msgstr "共享檔案夾"
 
 msgid "This share is already in use by another remote FTP share."
-msgstr ""
+msgstr "此共享已經被另一遠端 FTP 共享使用了。"
 
 msgid "This share is already in use by another remote GlusterFS share."
-msgstr ""
+msgstr "此共享已經被另一遠端 GlusterFS 共享使用了。"
 
 msgid "This share is already in use by another remote NFS share."
 msgstr "此共享已經被另一遠端 NFS 共享使用中。"
+
+msgid "This share is already in use by another remote SSHFS share."
+msgstr "此共享已經被另一遠端 SSHFS 共享使用了。"
 
 msgid "This share is already in use by another remote Samba share."
 msgstr "此共享已經被另一遠端 Samba 共享使用中。"
@@ -70,11 +73,8 @@ msgstr "此共享已經被另一遠端 Samba 共享使用中。"
 msgid "This share is already in use by another remote WebDAV share."
 msgstr "此共享已經被另一遠端 WebDAV 共享使用中。"
 
-msgid "This share is already in use by another remote sshfs share."
-msgstr ""
-
 msgid "User"
-msgstr ""
+msgstr "用戶"
 
 msgid "n/a"
 msgstr "n/a"

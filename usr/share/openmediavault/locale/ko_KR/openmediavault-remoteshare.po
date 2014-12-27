@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-11 08:25-0600\n"
-"PO-Revision-Date: 2014-12-11 14:28+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
+"POT-Creation-Date: 2014-12-11 09:53-0600\n"
+"PO-Revision-Date: 2014-12-20 01:48+0000\n"
+"Last-Translator: Hyeonkyu Chu <hyeonkyu@gmail.com>\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/ko_KR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,44 +37,44 @@ msgid "Mount as"
 msgstr "다음 사용자로 마운트"
 
 msgid "Port"
-msgstr ""
+msgstr "포트"
 
 msgid "Remote Host"
-msgstr ""
+msgstr "원격 호스트"
 
 msgid "Remote Path"
-msgstr ""
+msgstr "원격 경로"
 
 msgid ""
 "Remote path will be mounted as this shared folder for use in other plugins."
-msgstr ""
+msgstr "원격 경로는 다른 플러그인에서 사용되기 위해, 이 공유 폴더로 마운트됩니다."
 
 msgid "SSHFS"
-msgstr ""
+msgstr "SSHFS"
 
 msgid "Shared Folder"
 msgstr "공유 폴더"
 
 msgid "This share is already in use by another remote FTP share."
-msgstr ""
+msgstr "이 공유는 이미 다른 원격 FTP 공유에 의해 사용 중입니다."
 
 msgid "This share is already in use by another remote GlusterFS share."
-msgstr ""
+msgstr "이 공유는 이미 다른 원격 GlusterFS 공유에 의해 사용 중입니다."
 
 msgid "This share is already in use by another remote NFS share."
 msgstr "이 공유는 이미 다른 원격 NFS 공유에 의해 사용 중입니다."
 
+msgid "This share is already in use by another remote SSHFS share."
+msgstr "이 공유는 이미 다른 원격 SSHFS 공유에 의해 사용 중입니다."
+
 msgid "This share is already in use by another remote Samba share."
-msgstr "이 공유는 이미 다른 원격 Samba 공유에 의해 사용 중입니다."
+msgstr "이 공유는 이미 다른 원격 SAMBA 공유에 의해 사용 중입니다."
 
 msgid "This share is already in use by another remote WebDAV share."
 msgstr "이 공유는 이미 다른 원격 WebDAV 공유에 의해 사용 중입니다."
 
-msgid "This share is already in use by another remote sshfs share."
-msgstr ""
-
 msgid "User"
-msgstr ""
+msgstr "사용자"
 
 msgid "n/a"
 msgstr "n/a"

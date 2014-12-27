@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-11 08:25-0600\n"
-"PO-Revision-Date: 2014-12-11 14:28+0000\n"
+"POT-Creation-Date: 2014-12-11 09:53-0600\n"
+"PO-Revision-Date: 2014-12-11 15:55+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Galician (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -63,13 +63,13 @@ msgstr ""
 msgid "This share is already in use by another remote NFS share."
 msgstr ""
 
+msgid "This share is already in use by another remote SSHFS share."
+msgstr ""
+
 msgid "This share is already in use by another remote Samba share."
 msgstr ""
 
 msgid "This share is already in use by another remote WebDAV share."
-msgstr ""
-
-msgid "This share is already in use by another remote sshfs share."
 msgstr ""
 
 msgid "User"
