@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Miguel Anxo Bouzada <mbouzada@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-11 09:53-0600\n"
-"PO-Revision-Date: 2014-12-11 15:55+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2015-02-17 09:33+0000\n"
+"Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,62 +19,62 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Add share"
-msgstr ""
+msgstr "Engadir compartido"
 
 msgid "Edit share"
-msgstr ""
+msgstr "Editar compartido"
 
 msgid "Enable"
-msgstr ""
+msgstr "Activar"
 
 msgid "Enabled"
-msgstr ""
+msgstr "Activado"
 
 msgid "Hostname, IP address, or fully qualified domain name of the server."
-msgstr ""
+msgstr "Nome da máquina, enderezo IP, ou o nome completo do dominio do servidor."
 
 msgid "Mount as"
-msgstr ""
+msgstr "Montar como"
 
 msgid "Port"
-msgstr ""
+msgstr "Porto"
 
 msgid "Remote Host"
-msgstr ""
+msgstr "Máquina remota"
 
 msgid "Remote Path"
-msgstr ""
+msgstr "Ruta remota"
 
 msgid ""
 "Remote path will be mounted as this shared folder for use in other plugins."
-msgstr ""
+msgstr "A ruta remota, montarase como un cartafol compartido para poder ser usada noutros engadidos."
 
 msgid "SSHFS"
-msgstr ""
+msgstr "SSHFS"
 
 msgid "Shared Folder"
-msgstr ""
+msgstr "Cartafol compartido"
 
 msgid "This share is already in use by another remote FTP share."
-msgstr ""
+msgstr "Este compartido está en uso por outro compartido FTP remoto."
 
 msgid "This share is already in use by another remote GlusterFS share."
-msgstr ""
+msgstr "Este compartido está en uso por outro compartido GlusterFS remoto."
 
 msgid "This share is already in use by another remote NFS share."
-msgstr ""
+msgstr "Este compartido está en uso por outro compartido NFS remoto."
 
 msgid "This share is already in use by another remote SSHFS share."
-msgstr ""
+msgstr "Este compartido está en uso por outro compartido SSHFS remoto."
 
 msgid "This share is already in use by another remote Samba share."
-msgstr ""
+msgstr "Este compartido está en uso por outro compartido Samba remoto."
 
 msgid "This share is already in use by another remote WebDAV share."
-msgstr ""
+msgstr "Este compartido está en uso por outro compartido WebDAV remoto."
 
 msgid "User"
-msgstr ""
+msgstr "Usuario"
 
 msgid "n/a"
-msgstr ""
+msgstr "n/d"

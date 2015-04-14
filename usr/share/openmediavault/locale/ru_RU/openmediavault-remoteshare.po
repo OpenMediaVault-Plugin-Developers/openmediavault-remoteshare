@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Alexander Savchenko, 2014
+# Alexander Savchenko, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-11 09:53-0600\n"
-"PO-Revision-Date: 2014-12-11 15:55+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2015-03-04 19:34+0000\n"
+"Last-Translator: Alexander Savchenko\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,10 +37,10 @@ msgid "Mount as"
 msgstr "Монтировать как"
 
 msgid "Port"
-msgstr ""
+msgstr "Порт"
 
 msgid "Remote Host"
-msgstr ""
+msgstr "Удалённый хост"
 
 msgid "Remote Path"
 msgstr ""
@@ -74,7 +74,7 @@ msgid "This share is already in use by another remote WebDAV share."
 msgstr ""
 
 msgid "User"
-msgstr ""
+msgstr "Пользователь"
 
 msgid "n/a"
 msgstr ""

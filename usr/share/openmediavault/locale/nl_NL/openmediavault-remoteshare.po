@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# okpail <okpail@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remoteshare\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-11 09:53-0600\n"
-"PO-Revision-Date: 2014-12-11 15:55+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2015-04-12 20:02+0000\n"
+"Last-Translator: okpail <okpail@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/openmediavault-remoteshare/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,62 +19,62 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Add share"
-msgstr ""
+msgstr "Voeg een share toe"
 
 msgid "Edit share"
-msgstr ""
+msgstr "Edit de share"
 
 msgid "Enable"
-msgstr ""
+msgstr "Inschakelen"
 
 msgid "Enabled"
-msgstr ""
+msgstr "Ingeschakeld"
 
 msgid "Hostname, IP address, or fully qualified domain name of the server."
-msgstr ""
+msgstr "Hostnaam, IP adres, of volledige gekwalificeerde domein naam van de server."
 
 msgid "Mount as"
-msgstr ""
+msgstr "Mounten als"
 
 msgid "Port"
-msgstr ""
+msgstr "Poort"
 
 msgid "Remote Host"
-msgstr ""
+msgstr "Remote Host"
 
 msgid "Remote Path"
-msgstr ""
+msgstr "Remote Pad"
 
 msgid ""
 "Remote path will be mounted as this shared folder for use in other plugins."
-msgstr ""
+msgstr "Het remote pad zal worden gemount als gedeelde folder voor gebruik in andere plugins"
 
 msgid "SSHFS"
-msgstr ""
+msgstr "SSHFS"
 
 msgid "Shared Folder"
-msgstr ""
+msgstr "Gedeelde Folder"
 
 msgid "This share is already in use by another remote FTP share."
-msgstr ""
+msgstr "Deze share is in gebruik door een andere remote FTP share."
 
 msgid "This share is already in use by another remote GlusterFS share."
-msgstr ""
+msgstr "Deze share wordt al gebruikt door een andere remote GlusterFS share."
 
 msgid "This share is already in use by another remote NFS share."
-msgstr ""
+msgstr "Deze share wordt al gebruikt door een andere remote NFS share."
 
 msgid "This share is already in use by another remote SSHFS share."
-msgstr ""
+msgstr "Deze share wordt al gebruikt door een andere remote SSHFS share."
 
 msgid "This share is already in use by another remote Samba share."
-msgstr ""
+msgstr "Deze share wordt al gebruikt door een andere remote Samba share."
 
 msgid "This share is already in use by another remote WebDAV share."
-msgstr ""
+msgstr "Deze share wordt al gebruikt door een andere remote WebDAV share."
 
 msgid "User"
-msgstr ""
+msgstr "Gebruiker"
 
 msgid "n/a"
-msgstr ""
+msgstr "niet beschikbaar"
