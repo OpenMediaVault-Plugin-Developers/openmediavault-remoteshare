@@ -4,11 +4,11 @@ XB-Plugin-Section: filesystems
 Priority: optional
 Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
 Build-Depends: debhelper (>= 9.0.0)
-Standards-Version: 3.9.3
+Standards-Version: 3.9.6
 
 Package: openmediavault-remoteshare
 Architecture: all
-Depends: openmediavault (>= 1.0.29), cifs-utils, davfs2, glusterfs-client,
+Depends: openmediavault (>= 1.16), cifs-utils, davfs2, glusterfs-client,
  sshfs, curlftpfs
 Description: remote share plugin for OpenMediaVault.
  This plugin allow mounting of remote samba, nfs and webdav shares as a

@@ -1,3 +1,9 @@
+openmediavault-remoteshare (1.1) UNRELEASED; urgency=low
+
+  * Fix Github issue #9
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 14 Apr 2015 06:51:27 -0500
+
 openmediavault-remoteshare (1.0.8) stable; urgency=low
 
   * Fix permissions of if-up script
