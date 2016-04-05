@@ -8,7 +8,7 @@ Standards-Version: 3.9.6
 
 Package: openmediavault-remoteshare
 Architecture: all
-Depends: openmediavault (>= 1.16), cifs-utils, davfs2, glusterfs-client,
+Depends: openmediavault (>= 1.16) | openmediavault (= 3.0.13), cifs-utils, davfs2, glusterfs-client,
  sshfs, curlftpfs
 Description: remote share plugin for OpenMediaVault.
  This plugin allow mounting of remote samba, nfs and webdav shares as a
